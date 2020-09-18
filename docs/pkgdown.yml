@@ -1,0 +1,10 @@
+pandoc: 2.7.2
+pkgdown: 1.5.1
+pkgdown_sha: ~
+articles:
+  DesignWithSpending: DesignWithSpending.html
+  NPEbackground: NPEbackground.html
+  NPEbounds: NPEbounds.html
+  QuickStart: QuickStart.html
+last_built: 2020-09-17T17:23Z
+

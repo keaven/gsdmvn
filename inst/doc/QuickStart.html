@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Quick Start for NPH Sample Size and Power</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Quick Start for NPH Sample Size and Power</h1>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#packages-used">Packages Used</a></li>
+<li><a href="#enrollment-rates">Enrollment Rates</a></li>
+<li><a href="#failure-and-dropout-rates">Failure and Dropout Rates</a></li>
+<li><a href="#fixed-design">Fixed Design</a></li>
+<li><a href="#group-sequential-design">Group Sequential Design</a><ul>
+<li><a href="#simple-efficacy-bound-definition">Simple Efficacy Bound Definition</a></li>
+<li><a href="#two-sided-testing">Two-Sided Testing</a></li>
+</ul></li>
+<li><a href="#confirmation-by-simulation">Confirmation by Simulation</a></li>
+<li><a href="#differences-from-gsdesign">Differences From <strong>gsDesign</strong></a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+
+<div id="overview" class="section level1">
+<h1>Overview</h1>
+<p>We provide simple examples for use of the <strong>gsdmvn</strong> package for deriving fixed and group sequential designs under non-proportional hazards. The piecewise model for enrollment, failure rates, dropout rates and changing hazard ratio over time allow great flexibility in design assumptions. Users are encouraged to suggest features that would be of immediate and long-term interest to add.</p>
+<p>Topics included here are:</p>
+<ul>
+<li>Packages required and how they are used.</li>
+<li>Specifying enrollment rates.</li>
+<li>Specifying failure and dropout rates with possibly changing hazard ratio over time.</li>
+<li>Deriving a fixed design with no interim analysis.</li>
+<li>Simple boundary specification for group sequential design.</li>
+<li>Deriving a group sequential design under non-proportional hazards.</li>
+<li>Displaying design properties.</li>
+<li>Design properties under alternate assumptions.</li>
+<li>Differences from <strong>gsDesign</strong>.</li>
+<li>Future enhancement priorities.</li>
+</ul>
+<p>All of these items are discussed briefly to enable a quick start for early adopters while also suggesting the ultimate possibilities that the software enables. Finally, while the final section provides current enhancement priorities, potential topic-related enhancements are discussed throughout the document.</p>
+</div>
+<div id="packages-used" class="section level1">
+<h1>Packages Used</h1>
+<ul>
+<li>The <strong>gsdmvn</strong> package is used here to implement group sequential distribution theory under non-proportional hazards and to derive a wide variety of boundary types for group sequential designs.</li>
+<li>The <strong>gsDesign</strong> package is used as a check for results under proportional hazards as well as a source from deriving bounds using spending functions.</li>
+<li>The <strong>gsDesign2</strong> package provides computations to compute expected event accumulation and average hazard ratio over time; these are key inputs to the group sequential distribution parameters.</li>
+<li>The <strong>simtrial</strong> package is used to verify design properties using simulation.</li>
+</ul>
+<p>The <strong>gsdmvn</strong> package will likely will likely be incorporated eventually into the <strong>gsDesign2</strong> package, resulting in a fully featured design package. However, features and implementation in <strong>gsdmvn</strong> will be allowed to change as needed during the agile rapid development phase.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(gsdmvn)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(gsDesign)</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co">#&gt; Loading required package: ggplot2</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(gsDesign2)</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">library</span>(simtrial)</a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="kw">library</span>(knitr)</a></code></pre></div>
+</div>
+<div id="enrollment-rates" class="section level1">
+<h1>Enrollment Rates</h1>
+<p>Piecewise constant enrollment rates are input in a tabular format. Here we assume enrollment will ramp-up with 25%, 50%, and 75% of the final enrollment rate for 2 months each followed by a steady state 100% enrollment for another 6 months. The rates will be increased later to power the design appropriately. However, the fixed enrollment rate periods will remain unchanged.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">enrollRates &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">Stratum =</span> <span class="st">&quot;All&quot;</span>, <span class="dt">duration =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">rate =</span> (<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)<span class="op">/</span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2">enrollRates</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Stratum"],"name":[1],"type":["chr"],"align":["left"]},{"label":["duration"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"All","2":"2","3":"0.25"},{"1":"All","2":"2","3":"0.50"},{"1":"All","2":"2","3":"0.75"},{"1":"All","2":"6","3":"1.00"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="failure-and-dropout-rates" class="section level1">
+<h1>Failure and Dropout Rates</h1>
+<p>Constant failure and dropout rates are specified by study period and stratum; we consider a single stratum here. A hazard ratio is provided for treatment/control hazard rate for each period and stratum. The dropout rate for each period is assumed the same for each treatment group; this restriction could be eliminated in a future version, if needed. Generally, we take advantage of the identity for an exponential distribution with median <span class="math inline">\(m\)</span>, the corresponding failure rate <span class="math inline">\(\lambda\)</span> is</p>
+<p><span class="math display">\[\lambda = \log(2) / m.\]</span></p>
+<p>We consider a control group exponential time-to-event with a 12 month median. We assume a hazard ratio of 1 for 4 months, followed by a hazard ratio of 0.6 thereafter. Finally, we assume a low 0.001 exponential dropout rate for both treatment groups.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">medianSurv &lt;-<span class="st"> </span><span class="dv">12</span></a>
+<a class="sourceLine" id="cb3-2" title="2">failRates =<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">Stratum =</span> <span class="st">&quot;All&quot;</span>,</a>
+<a class="sourceLine" id="cb3-3" title="3">                           <span class="dt">duration =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="ot">Inf</span>),</a>
+<a class="sourceLine" id="cb3-4" title="4">                           <span class="dt">failRate =</span> <span class="kw">log</span>(<span class="dv">2</span>) <span class="op">/</span><span class="st"> </span>medianSurv,</a>
+<a class="sourceLine" id="cb3-5" title="5">                           <span class="dt">hr =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">.6</span>),</a>
+<a class="sourceLine" id="cb3-6" title="6">                           <span class="dt">dropoutRate =</span> <span class="fl">.001</span>)</a>
+<a class="sourceLine" id="cb3-7" title="7">failRates</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Stratum"],"name":[1],"type":["chr"],"align":["left"]},{"label":["duration"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["failRate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hr"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["dropoutRate"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"All","2":"4","3":"0.05776227","4":"1.0","5":"0.001"},{"1":"All","2":"Inf","3":"0.05776227","4":"0.6","5":"0.001"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="fixed-design" class="section level1">
+<h1>Fixed Design</h1>
+<p>Under the above enrollment, failure and dropout rate assumptions we now derive sample size for a trial targeted to complete in 36 months with no interim analysis, 90% power and 2.5% Type I error. The parameter <code>upar = qnorm(1 - .025)</code> in this case is the upper bound for the single analysis, while the parameter <code>beta = 0.1</code> is the Type II error (1 - power). The information fraction <code>IF = 1</code> at the final analysis is just a statement that the analysis is done with 100% of the design planned endpoints. Finally, <code>lpar = -Inf</code> just means there is no futility bound for the design. The design can be derived under these assumptions.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># Type I error</span></a>
+<a class="sourceLine" id="cb4-2" title="2">alpha &lt;-<span class="st"> </span><span class="fl">.025</span></a>
+<a class="sourceLine" id="cb4-3" title="3">design &lt;-</a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="st">   </span><span class="kw">gs_design_ahr</span>(<span class="dt">enrollRates =</span> enrollRates,</a>
+<a class="sourceLine" id="cb4-5" title="5">                 <span class="dt">failRates =</span> failRates,</a>
+<a class="sourceLine" id="cb4-6" title="6">                 <span class="dt">alpha =</span> alpha,</a>
+<a class="sourceLine" id="cb4-7" title="7">                 <span class="dt">beta =</span> <span class="fl">.1</span>, <span class="co"># Type II error = 1 - power</span></a>
+<a class="sourceLine" id="cb4-8" title="8">                 <span class="dt">analysisTimes =</span> <span class="dv">36</span>, <span class="co"># Planned trial duration</span></a>
+<a class="sourceLine" id="cb4-9" title="9">                 <span class="dt">IF =</span> <span class="dv">1</span>, <span class="co"># single analysis at information-fraction of 1</span></a>
+<a class="sourceLine" id="cb4-10" title="10">                 <span class="dt">upar =</span> <span class="kw">qnorm</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>alpha), <span class="co"># Final analysis bound</span></a>
+<a class="sourceLine" id="cb4-11" title="11">                 <span class="dt">lpar =</span> <span class="op">-</span><span class="ot">Inf</span> <span class="co"># No futility bound</span></a>
+<a class="sourceLine" id="cb4-12" title="12">               )</a></code></pre></div>
+<p>There are three components to the resulting design.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">names</span>(design)</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="co">#&gt; [1] &quot;enrollRates&quot; &quot;failRates&quot;   &quot;bounds&quot;</span></a></code></pre></div>
+<p>First, the enrollment rates for each period have been increased proportionately to size the trial for the desired properties; the duration for each enrollment rate has not changed.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">design<span class="op">$</span>enrollRates</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Stratum"],"name":[1],"type":["chr"],"align":["left"]},{"label":["duration"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"All","2":"2","3":"12.04701"},{"1":"All","2":"2","3":"24.09401"},{"1":"All","2":"2","3":"36.14102"},{"1":"All","2":"6","3":"48.18802"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>The output <code>failRates</code> are the same as input. The output bounds are just an upper bound of <span class="math inline">\(\Phi^{-1}(1-\alpha)\)</span> and a lower bound of <span class="math inline">\(-\infty\)</span>. The targeted time of the single analysis is in the <code>Time</code> column. The average hazard ratio used to compute the sample size based on the <span class="citation">Schoenfeld (1981)</span> approximation is in <code>AHR</code>. The targeted events at the analysis is in the column <code>Events</code>. The targeted time of the analysis is in <code>Time</code>. The power is in the <code>Probability</code> column on the row with the <code>Upper</code> bound. The parameter <code>theta</code> is the natural parameter for the effect size as outlined in <span class="citation">Jennison and Turnbull (2000)</span> and elsewhere in this package; in this case it is <code>-log(AHR)</code>. The variables <code>info</code> and <code>info0</code> are statistical information at each analysis under the alternate and null hypothesis, respectively.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">design<span class="op">$</span>bounds <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>))</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Analysis</th>
+<th align="left">Bound</th>
+<th align="right">Time</th>
+<th align="right">N</th>
+<th align="right">Events</th>
+<th align="right">Z</th>
+<th align="right">Probability</th>
+<th align="right">AHR</th>
+<th align="right">theta</th>
+<th align="right">info</th>
+<th align="right">info0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Upper</td>
+<td align="right">36</td>
+<td align="right">434</td>
+<td align="right">315</td>
+<td align="right">1.96</td>
+<td align="right">0.9</td>
+<td align="right">0.693</td>
+<td align="right">0.366</td>
+<td align="right">77.73</td>
+<td align="right">78.81</td>
+</tr>
+</tbody>
+</table>
+<p>We note that the targeted <code>Events</code> are approximately what would be proposed with the <span class="citation">Schoenfeld (1981)</span> formula:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">gsDesign<span class="op">::</span><span class="kw">nEvents</span>(<span class="dt">hr=</span>design<span class="op">$</span>bounds<span class="op">$</span>AHR)</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="co">#&gt; [1] 313.535</span></a></code></pre></div>
+<p>The difference is that <code>gs_design_ahr()</code> accounts for both a null and alternate hypothesis variance estimate for <code>theta=log(AHR)</code> at each analysis to yield a slightly more conservative event target due to slower accumulation of statistical information under the alternate hypothesis. See <span class="citation">Lachin (2009)</span> for this approach for fixed design; to our knowledge, this has not previously been extended to group sequential design. Due to simplicity, there may be reasons to allow approaches with a single variance estimate in future releases.</p>
+<p>Finally, we note that with a shorter trial duration of 30 months, we need both a larger sample size and targeted number of events due to a larger expected AHR at the time of analysis:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">  <span class="kw">gs_design_ahr</span>(<span class="dt">enrollRates =</span> enrollRates,</a>
+<a class="sourceLine" id="cb9-2" title="2">              <span class="dt">failRates =</span> failRates,</a>
+<a class="sourceLine" id="cb9-3" title="3">              <span class="dt">alpha =</span> alpha,</a>
+<a class="sourceLine" id="cb9-4" title="4">              <span class="dt">beta =</span> <span class="fl">.1</span>, <span class="co"># Type II error = 1 - power</span></a>
+<a class="sourceLine" id="cb9-5" title="5">              <span class="dt">analysisTimes =</span> <span class="dv">30</span>, <span class="co"># Planned trial duration</span></a>
+<a class="sourceLine" id="cb9-6" title="6">              <span class="dt">IF =</span> <span class="dv">1</span>, <span class="co"># single analysis at information-fraction of 1</span></a>
+<a class="sourceLine" id="cb9-7" title="7">              <span class="dt">upar =</span> <span class="kw">qnorm</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>alpha), <span class="co"># Final analysis bound</span></a>
+<a class="sourceLine" id="cb9-8" title="8">              <span class="dt">lpar =</span> <span class="op">-</span><span class="ot">Inf</span> <span class="co"># No futility bound</span></a>
+<a class="sourceLine" id="cb9-9" title="9">            )<span class="op">$</span>bounds <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>))</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Analysis</th>
+<th align="left">Bound</th>
+<th align="right">Time</th>
+<th align="right">N</th>
+<th align="right">Events</th>
+<th align="right">Z</th>
+<th align="right">Probability</th>
+<th align="right">AHR</th>
+<th align="right">theta</th>
+<th align="right">info</th>
+<th align="right">info0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Upper</td>
+<td align="right">30</td>
+<td align="right">535</td>
+<td align="right">348</td>
+<td align="right">1.96</td>
+<td align="right">0.9</td>
+<td align="right">0.705</td>
+<td align="right">0.349</td>
+<td align="right">85.35</td>
+<td align="right">86.88</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="group-sequential-design" class="section level1">
+<h1>Group Sequential Design</h1>
+<p>We will not go into detail for group sequential designs here. In brief, however, a sequence of tests <span class="math inline">\(Z_1, Z_2,\ldots, Z_K\)</span> that follow a multivariate normal distribution are peformed to test if a new treatment is better than control <span class="citation">Jennison and Turnbull (2000)</span>. We assume <span class="math inline">\(Z_k&gt;0\)</span> is favorable for the experimental treatment. Generally Type I error for this set of tests will be controlled under the null hypothesis of no treatment difference by a sequence of bounds <span class="math inline">\(b_1, b_2,\ldots,b_K\)</span> such that for a chosen Type I error <span class="math inline">\(\alpha &gt; 0\)</span> we have</p>
+<p><span class="math display">\[\alpha = 1 - P_0(\cap_{k=1}^K Z_k &lt; b_k)\]</span> Where <span class="math inline">\(P_0()\)</span> refers to a probability under the null hypothesis. This is referred to as a non-binding bound since it is assumed the trial will not be stopped early for futility if some <span class="math inline">\(Z_k\)</span> is small.</p>
+<div id="simple-efficacy-bound-definition" class="section level2">
+<h2>Simple Efficacy Bound Definition</h2>
+<p><span class="citation">Lan and DeMets (1983)</span> developed the spending function method for deriving group sequential bounds. This involves use of a non-decreasing spending function <span class="math inline">\(f(t)\)</span> for <span class="math inline">\(t\ge 0\)</span> where <span class="math inline">\(f(0)=0\)</span> and <span class="math inline">\(f(t)=\alpha\)</span> for <span class="math inline">\(t \ge 1\)</span>. Suppose for <span class="math inline">\(K&gt;0\)</span> analyses are performed when proportion <span class="math inline">\(t_1&lt; t_2 &lt;\ldots t_K=1\)</span> of some planned statistical information (e.g., proportion of planned events for a time-to-event endpoint trial for proportion of observations for a binomial or normal endpoint). Bounds through the first <span class="math inline">\(k\)</span> analyses <span class="math inline">\(1\le k\le K\)</span> are recursively defined by the spending function and the multivariate normal distribution to satisfy</p>
+<p><span class="math display">\[f(t_k) = 1 - P_0(\cap_{j=1}^k Z_j &lt; b_j).\]</span> For this quick start, we will only illustrate this type of efficacy bound.</p>
+<p>Perhaps the most common spending function for this approach is the <span class="citation">Lan and DeMets (1983)</span> approximation to the O’Brien-Fleming bound with</p>
+<p><span class="math display">\[f(t) = 2-2\Phi\left(\frac{\Phi^{-1}(1-\alpha/2)}{t^{1/2}}\right).\]</span></p>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>Suppose <span class="math inline">\(K=3\)</span> and <span class="math inline">\(t_1=0.5\)</span>, <span class="math inline">\(t_2 = 0.75\)</span>, <span class="math inline">\(t_3 = 1\)</span>. We can define bounds with the <strong>gsDesign</strong> group sequential design function <code>gsDesign()</code> and Lan-DeMets O’Brien-Fleming spending function for <span class="math inline">\(\alpha = 0.025\)</span>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">b &lt;-<span class="st"> </span>gsDesign<span class="op">::</span><span class="kw">gsDesign</span>(<span class="dt">k=</span><span class="dv">3</span>, <span class="dt">timing =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>), <span class="dt">test.type=</span><span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.025</span>, <span class="dt">sfu =</span> gsDesign<span class="op">::</span>sfLDOF)<span class="op">$</span>upper<span class="op">$</span>bound</a>
+<a class="sourceLine" id="cb10-2" title="2">b</a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="co">#&gt; [1] 2.962588 2.359018 2.014084</span></a></code></pre></div>
+<p>Now we can define a one-sided group sequential design under the same enrollment, failure and dropout assumptions used previously.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">design1s &lt;-<span class="st"> </span><span class="kw">gs_design_ahr</span>(<span class="dt">enrollRates =</span> enrollRates,</a>
+<a class="sourceLine" id="cb11-2" title="2">                          <span class="dt">failRates =</span> failRates,</a>
+<a class="sourceLine" id="cb11-3" title="3">                          <span class="dt">analysisTimes =</span> <span class="dv">36</span>, <span class="co"># Trial duration</span></a>
+<a class="sourceLine" id="cb11-4" title="4">                          <span class="dt">upper =</span> gs_spending_bound,</a>
+<a class="sourceLine" id="cb11-5" title="5">                          <span class="dt">upar =</span> <span class="kw">list</span>(<span class="dt">sf =</span> gsDesign<span class="op">::</span>sfLDOF, <span class="dt">total_spend =</span> <span class="fl">0.025</span>),</a>
+<a class="sourceLine" id="cb11-6" title="6">                          <span class="dt">lpar =</span> <span class="kw">rep</span>(<span class="op">-</span><span class="ot">Inf</span>, <span class="dv">3</span>), <span class="co"># No futility bound</span></a>
+<a class="sourceLine" id="cb11-7" title="7">                          <span class="dt">IF =</span> <span class="kw">c</span>(.<span class="dv">5</span>, <span class="fl">.75</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb11-8" title="8">                        )</a></code></pre></div>
+<p>Bounds at the 3 analyses are as follows; note that expected sample size at time of each data cutoff for analysis is also here in <code>N</code>. We filter on the upper bound so that lower bounds with <code>Z = -Inf</code> are not shown.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">design1s<span class="op">$</span>bounds <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Bound <span class="op">==</span><span class="st"> &quot;Upper&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>))</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Analysis</th>
+<th align="left">Bound</th>
+<th align="right">Time</th>
+<th align="right">N</th>
+<th align="right">Events</th>
+<th align="right">Z</th>
+<th align="right">Probability</th>
+<th align="right">AHR</th>
+<th align="right">theta</th>
+<th align="right">info</th>
+<th align="right">info0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Upper</td>
+<td align="right">16.3</td>
+<td align="right">451</td>
+<td align="right">164</td>
+<td align="right">2.963</td>
+<td align="right">0.0594</td>
+<td align="right">0.801</td>
+<td align="right">0.221</td>
+<td align="right">40.14</td>
+<td align="right">40.97</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Upper</td>
+<td align="right">23.9</td>
+<td align="right">451</td>
+<td align="right">246</td>
+<td align="right">2.359</td>
+<td align="right">0.5425</td>
+<td align="right">0.728</td>
+<td align="right">0.318</td>
+<td align="right">60.14</td>
+<td align="right">61.45</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Upper</td>
+<td align="right">36.0</td>
+<td align="right">451</td>
+<td align="right">328</td>
+<td align="right">2.014</td>
+<td align="right">0.9000</td>
+<td align="right">0.693</td>
+<td align="right">0.366</td>
+<td align="right">80.82</td>
+<td align="right">81.94</td>
+</tr>
+</tbody>
+</table>
+<p>The boundary crossing probabilities column labelled <code>Probability</code> here are under the alternate hypothesis. These are cumulative probabilities totaling 0.9 at the final analysis, representing 90% power. If we wish to see the boundary probabilities under the null hypothesis, we can change the hazard ratio to 1 in the input <code>failRates</code>, use the output <code>enrollRates</code> from <code>designs</code> as follows.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">gs_power_ahr</span>(<span class="dt">enrollRates =</span> design1s<span class="op">$</span>enrollRates,</a>
+<a class="sourceLine" id="cb13-2" title="2">             <span class="dt">failRates =</span> design1s<span class="op">$</span>failRates <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">hr =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb13-3" title="3">             <span class="dt">upper =</span> gs_spending_bound,</a>
+<a class="sourceLine" id="cb13-4" title="4">             <span class="dt">upar =</span> <span class="kw">list</span>(<span class="dt">sf =</span> gsDesign<span class="op">::</span>sfLDOF, <span class="dt">total_spend =</span> <span class="fl">0.025</span>),</a>
+<a class="sourceLine" id="cb13-5" title="5">             <span class="dt">lpar =</span> <span class="kw">rep</span>(<span class="op">-</span><span class="ot">Inf</span>, <span class="dv">3</span>), <span class="co"># No futility bound</span></a>
+<a class="sourceLine" id="cb13-6" title="6">             <span class="dt">events =</span> design1s<span class="op">$</span>bound<span class="op">$</span>Events[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb13-7" title="7">) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Bound <span class="op">==</span><span class="st"> &quot;Upper&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>))</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Analysis</th>
+<th align="left">Bound</th>
+<th align="right">Time</th>
+<th align="right">Events</th>
+<th align="right">Z</th>
+<th align="right">Probability</th>
+<th align="right">AHR</th>
+<th align="right">theta</th>
+<th align="right">info</th>
+<th align="right">info0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Upper</td>
+<td align="right">15.3</td>
+<td align="right">164</td>
+<td align="right">3</td>
+<td align="right">0.002</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">40.969</td>
+<td align="right">40.97</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Upper</td>
+<td align="right">21.2</td>
+<td align="right">246</td>
+<td align="right">2</td>
+<td align="right">0.010</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">61.454</td>
+<td align="right">61.45</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Upper</td>
+<td align="right">30.4</td>
+<td align="right">328</td>
+<td align="right">2</td>
+<td align="right">0.025</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">81.939</td>
+<td align="right">81.94</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="two-sided-testing" class="section level2">
+<h2>Two-Sided Testing</h2>
+<p>We will consider both symmetric and asymmetric 2-sided designs.</p>
+<div id="symmetric-2-sided-bounds" class="section level3">
+<h3>Symmetric 2-sided bounds</h3>
+<p>For a symmetric design, we can again define a bound using <code>gsDesign::gsDesign()</code>. For this example, the bound is identical to <code>b</code> above to the digits calculated.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">b2 &lt;-<span class="st"> </span>gsDesign<span class="op">::</span><span class="kw">gsDesign</span>(<span class="dt">test.type =</span> <span class="dv">2</span>, <span class="dt">sfu =</span> sfLDOF, <span class="dt">alpha =</span> <span class="fl">0.025</span>, <span class="dt">timing =</span> <span class="kw">c</span>(.<span class="dv">5</span>, <span class="fl">.75</span>, <span class="dv">1</span>))<span class="op">$</span>upper<span class="op">$</span>bound</a>
+<a class="sourceLine" id="cb14-2" title="2">b2</a>
+<a class="sourceLine" id="cb14-3" title="3"><span class="co">#&gt; [1] 2.962588 2.359018 2.014084</span></a></code></pre></div>
+<p>Now we replicate with ’gs_design_ahr()`:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">design2ss &lt;-<span class="st"> </span><span class="kw">gs_design_ahr</span>(<span class="dt">enrollRates =</span> enrollRates,</a>
+<a class="sourceLine" id="cb15-2" title="2">                           <span class="dt">failRates =</span> failRates,</a>
+<a class="sourceLine" id="cb15-3" title="3">                           <span class="dt">analysisTimes =</span> <span class="dv">36</span>, <span class="co"># Trial duration</span></a>
+<a class="sourceLine" id="cb15-4" title="4">                           <span class="dt">IF =</span> <span class="kw">c</span>(.<span class="dv">5</span>, <span class="fl">.75</span>, <span class="dv">1</span>), <span class="co"># Information fraction at analyses</span></a>
+<a class="sourceLine" id="cb15-5" title="5">                           <span class="dt">upper =</span> gs_spending_bound,</a>
+<a class="sourceLine" id="cb15-6" title="6">                           <span class="dt">upar =</span> <span class="kw">list</span>(<span class="dt">sf =</span> gsDesign<span class="op">::</span>sfLDOF, <span class="dt">total_spend =</span> <span class="fl">0.025</span>),</a>
+<a class="sourceLine" id="cb15-7" title="7">                           <span class="dt">lower =</span> gs_spending_bound,</a>
+<a class="sourceLine" id="cb15-8" title="8">                           <span class="dt">lpar =</span> <span class="kw">list</span>(<span class="dt">sf =</span> gsDesign<span class="op">::</span>sfLDOF, <span class="dt">total_spend =</span> <span class="fl">0.025</span>),</a>
+<a class="sourceLine" id="cb15-9" title="9">                           <span class="dt">h1_spending =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb15-10" title="10">                        )</a></code></pre></div>
+<p>Design bounds are confirmed with:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">design2ss<span class="op">$</span>bounds <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>))</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Analysis</th>
+<th align="left">Bound</th>
+<th align="right">Time</th>
+<th align="right">N</th>
+<th align="right">Events</th>
+<th align="right">Z</th>
+<th align="right">Probability</th>
+<th align="right">AHR</th>
+<th align="right">theta</th>
+<th align="right">info</th>
+<th align="right">info0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Upper</td>
+<td align="right">16.3</td>
+<td align="right">452</td>
+<td align="right">164</td>
+<td align="right">2.963</td>
+<td align="right">0.0596</td>
+<td align="right">0.801</td>
+<td align="right">0.221</td>
+<td align="right">40.20</td>
+<td align="right">41.03</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Upper</td>
+<td align="right">23.9</td>
+<td align="right">452</td>
+<td align="right">246</td>
+<td align="right">2.359</td>
+<td align="right">0.5432</td>
+<td align="right">0.728</td>
+<td align="right">0.318</td>
+<td align="right">60.23</td>
+<td align="right">61.55</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Upper</td>
+<td align="right">36.0</td>
+<td align="right">452</td>
+<td align="right">328</td>
+<td align="right">2.014</td>
+<td align="right">0.9004</td>
+<td align="right">0.693</td>
+<td align="right">0.366</td>
+<td align="right">80.94</td>
+<td align="right">82.06</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">Lower</td>
+<td align="right">16.3</td>
+<td align="right">452</td>
+<td align="right">164</td>
+<td align="right">-2.963</td>
+<td align="right">0.0000</td>
+<td align="right">0.801</td>
+<td align="right">0.221</td>
+<td align="right">40.20</td>
+<td align="right">41.03</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">Lower</td>
+<td align="right">23.9</td>
+<td align="right">452</td>
+<td align="right">246</td>
+<td align="right">-2.359</td>
+<td align="right">0.0000</td>
+<td align="right">0.728</td>
+<td align="right">0.318</td>
+<td align="right">60.23</td>
+<td align="right">61.55</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="left">Lower</td>
+<td align="right">36.0</td>
+<td align="right">452</td>
+<td align="right">328</td>
+<td align="right">-2.014</td>
+<td align="right">0.0000</td>
+<td align="right">0.693</td>
+<td align="right">0.366</td>
+<td align="right">80.94</td>
+<td align="right">82.06</td>
+</tr>
+</tbody>
+</table>
+<p>The bounds can be plotted easily:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> design2ss<span class="op">$</span>bound, <span class="kw">aes</span>(<span class="dt">x=</span>Events, <span class="dt">y=</span>Z, <span class="dt">group =</span> Bound)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype=</span>Bound)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;2-sided symmetric bounds with O&#39;Brien-Fleming-like spending&quot;</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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RfDGMIxKpert7Y10QWYqOTl5eHi4v78/0gWZKbVaLYHmSExMZFlWAhWRRnOoVCqZTNbd3R3pgsyUqM2Rmpoq0pwlCXuoAAAAAkCgAgAACACBCgAAIAAxj6E2VBZVHCQiojU7akryRVwSAABAhIm2h9paW15BO2pqampqqjafqqhsEGtBAAAAUUC0PVRN4a6a8Zd/typ3z5GGknxhd1K//PLLn//852fPnr3mmmu2bNmiVqsFnT0AAEAIwvH4ttbactPpe92dvr29vS+++CL3euXKlTqdzv+kfn355ZfLli1zv73uuus+/PBDhUIx89Jy5HL50NCQUHOLFIVCMTo6Ojw8HOmCzJQ0mkMul7Msi+aIEnFxcQzDSKAiojaHUqkUac6SJPJ1qK215aY9TZS7uWpi73R4ePiLL77gXl911VWxsdMpw69+9Sv+208//fS999678847Z1JYPoZhplewaCONikimFpKpiARqERMTQ0QSqIg0mkMaRG4GTeGumkKihsqi8tqqXYUaIqKUlJS9e/e6R5nejR1OnjzpNeSPf/zjLbfcQkR33HGHQqG48sord+/eTUTnz5//85//nJGRkZWVNX/+/GBmjhs7RBtp3EkAN3aIKrixQzBwY4eQhOeymfyVa5pOtwg5x+uuu85ryNq1a7kXubm58+bNc39Pjh07dt999916660//elPuSFms3nDhg2PPfaY0+nkhhw+fPizzz5rb28XsogAADCXiLaH2lBZ9PrC8Z3ShiMHcxduEHL2mzZt+v3vf3/48GHubVlZ2Y033si9fv755/ljrl69+siRIy6XKyUlhRuSnJyckJBw6tQp9/Hj+++/f3BwUKPR/OUvfyGiP//5zzt37kxNTV27du369euJyOl0XrhwIS0tLTU1NS4uTsiaAACAJIgWqPklVS3lpqI9RESUu3k8WoUil8vffPPNjz/++MyZM9ddd93SpUsDjHnVVVddddVV7iEbN27cuHEjf5yPPvrI5XINDg5yb2UymVqtPn36dGtrKzfEYrG89tprRHTgwIEVK1YQ0fe+9z2lUnn55Zc//fTTRNTT03Py5Mn09PSUlBS5XC5kVQEAYDYIx1m+gc2Km+O3tbWdPn3a5XLpdLqkpCQi2rRpU3t7+7x58373u98R0R/+8If77ruPiDZv3vzss88S0Z49exoaGlJSUoxG46JFi4joiy++SExMTE1NDVvi4hhqVMEx1KiCY6jBwDHUkODcsKBkZmZmZmbyh3idZrxixYq6urqOjo7s7GxuyPDw8JkzZ/73f//3gQce4Ibo9fqBgYH09PTPP/+ciD7//HOLxZKWlrZ69epvf/vbRNTa2sqybDgTFwAAhIJAFYZKpXIfxOVs2bJly5Yt/CFvvPGGy+VyX4Z44cKFs2fPHj9+PCkpiQvU55577re//S3xOpaffPJJuVy+YMECblYXLlzo6upKS0tD4gIARBsEavh4Je6NN9544MAB/pDHH39cr9efO3fOfcTX6XS2tbUpFAouUI8ePVpcXExEW7ZsqaioIKLXXnvt+PHjaWlp9913X1ZWFhG1t7cnJSUJeI8LAAAIBgI1iuTk5OTk5PCHVFdX899+4xvf2Lt3b0dHh3u006dPf/jhh21tbbfddhsXqDqdrre3d9GiRceOHSOi5ubmF154ITU19Zvf/CZ3U6q+vj65XI7EBQAQFgJ1NuGu5OEPKS8vLy8v5w+prKzs6Oi4dOkS97a9vf3DDz9sb2/v6+vjAnXHjh179+5VqVRvvPFGfn4+Ef3oRz9SKpXZ2dnceVUjIyMjIyO45RgAQEgQqFLjlbirVq36+OOP+UMefPDBG2644dy5cwsWLOCGvPPOO1999VViYiIXqHa7/a677kpISHj00UefeuopInr77bebmprS09P1en1aWhoRDQ0N4TguAAAfAnXOueGGG2644Qb+kI8++oiI3GdL5eTkmM3m9vZ29+2oPvnkk3379vX09CxbtowL1OXLlw8NDS1duvTgwYNEdObMmddffz0tLe3aa6/lphodHeXulQoAMEcgUGGM+w5QGo3mO9/5Dv+jioqKioqKoaEhmUzmHtLW1uYe4eTJk1artaur67HHHuMC9amnnnrjjTcyMzNfeuklbshLL72kVCqzsrJuv/32MFUJACCMEKgQLH4f7/3338//aNWqVc3NzUNDQyMjI9yQwsLCrKysjo4Obo+WiH7+85+3tLS4A7W+vv6BBx7IyMh48MEH/+mf/omIPvrooy+//DIjI2PlypVBPsYAACB6IFBBMHK53B26N998880338z/9Pjx40NDQ+5buixcuPCJJ57o6OjgbiNFRAcOHOBul1FXV8cF6g033CCTya688kqbzUZEra2tdXV1Go1m8unQAAARF/lb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" /><!-- --></p>
+</div>
+<div id="asymmetric-2-sided-bounds" class="section level3">
+<h3>Asymmetric 2-sided bounds</h3>
+<p>Asymmetric 2-sided designs are more common than symmetric since the objectives of the two bounds tend to be different. There is often caution to analyze early for efficacy or to use other than a conservative bound; both of these principles have been used with the example designs so far. Stopping when there is a lack of benefit for experimental treatment over control or for an overt indication of an unfavorable trend generally might be examined early and bounds be less stringent. We will add an early futility analysis where if there is a nominal 1-sided p-value of 0.05 in the wrong direction (<span class="math inline">\(Z=\Phi^{-1}(0.05)\)</span> after 30% or 50% of events have accrued. This might be considered a <em>disaster check</em>. After this point in time, there may not be a perceived need for further futility analysis. For efficacy, we add an infinite bound at this first interim analysis.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">b2sa &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">Inf</span>, b) <span class="co"># Same efficacy bound as before</span></a>
+<a class="sourceLine" id="cb18-2" title="2">a2sa &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="kw">qnorm</span>(.<span class="dv">05</span>), <span class="dv">2</span>), <span class="kw">rep</span>(<span class="op">-</span><span class="ot">Inf</span>, <span class="dv">2</span>)) <span class="co"># Single futility analysis bound</span></a>
+<a class="sourceLine" id="cb18-3" title="3"></a>
+<a class="sourceLine" id="cb18-4" title="4">design2sa &lt;-<span class="st"> </span><span class="kw">gs_design_nph</span>(<span class="dt">enrollRates =</span> enrollRates,</a>
+<a class="sourceLine" id="cb18-5" title="5">                        <span class="dt">failRates =</span> failRates,</a>
+<a class="sourceLine" id="cb18-6" title="6">                        <span class="dt">analysisTimes =</span> <span class="dv">36</span>, <span class="co"># Trial duration</span></a>
+<a class="sourceLine" id="cb18-7" title="7">                        <span class="dt">upar =</span> b2sa,</a>
+<a class="sourceLine" id="cb18-8" title="8">                        <span class="dt">lpar =</span> a2sa, <span class="co"># Asymmetric 2-sided bound</span></a>
+<a class="sourceLine" id="cb18-9" title="9">                        <span class="dt">IF =</span> <span class="kw">c</span>(.<span class="dv">3</span>, <span class="fl">.5</span>, <span class="fl">.75</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb18-10" title="10">                        )</a></code></pre></div>
+<p>We now have a slightly larger sample size to account for the possibility of an early futility stop.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">design2sa<span class="op">$</span>enrollRates <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">N =</span> <span class="kw">ceiling</span>(<span class="kw">sum</span>(rate <span class="op">*</span><span class="st"> </span>duration)))</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["N"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"459"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Bounds are now:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">design2sa<span class="op">$</span>bounds <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">abs</span>(Z) <span class="op">&lt;</span><span class="st"> </span><span class="ot">Inf</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>))</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Analysis</th>
+<th align="left">Bound</th>
+<th align="right">Z</th>
+<th align="right">Probability</th>
+<th align="right">theta</th>
+<th align="right">info</th>
+<th align="right">Time</th>
+<th align="right">AHR</th>
+<th align="right">Events</th>
+<th align="right">info0</th>
+<th align="right">N</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">Upper</td>
+<td align="right">3.0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">40.837</td>
+<td align="right">16.3010</td>
+<td align="right">0.801</td>
+<td align="right">166.710</td>
+<td align="right">41.68</td>
+<td align="right">458.68</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="left">Upper</td>
+<td align="right">2.4</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">61.180</td>
+<td align="right">23.8879</td>
+<td align="right">0.728</td>
+<td align="right">250.065</td>
+<td align="right">62.52</td>
+<td align="right">458.68</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="left">Upper</td>
+<td align="right">2.0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">82.212</td>
+<td align="right">36.0000</td>
+<td align="right">0.693</td>
+<td align="right">333.420</td>
+<td align="right">83.35</td>
+<td align="right">458.68</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">Lower</td>
+<td align="right">-1.6</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">24.679</td>
+<td align="right">12.0358</td>
+<td align="right">0.878</td>
+<td align="right">100.025</td>
+<td align="right">25.01</td>
+<td align="right">458.68</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">Lower</td>
+<td align="right">-1.6</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">40.837</td>
+<td align="right">16.3010</td>
+<td align="right">0.801</td>
+<td align="right">166.710</td>
+<td align="right">41.68</td>
+<td align="right">458.68</td>
+</tr>
+</tbody>
+</table>
+<p>We see that there does not need to be a (finite) stopping rule for each bound at each analysis. That is, there is a futility bound only at the first 2 analyses and an efficacy bound only for the last 3 analyses. We still have the targeted power. The efficacy bound has not changed from our first design. The reason for not changing it is to address regulator concerns that such bounds are not always stopped for. However, if the bound is obeyed, the Type I error can be seen to be slightly reduced as follows. This price is generally acceptable for regulatory acceptance and operational flexibility that is enabled by controlling Type I error even if the futility bound is not obeyed.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">events &lt;-<span class="st"> </span>(design2sa<span class="op">$</span>bounds <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Bound <span class="op">==</span><span class="st"> &quot;Upper&quot;</span>))<span class="op">$</span>Events</a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="kw">gs_power_nph</span>(<span class="dt">enrollRates =</span> design1s<span class="op">$</span>enrollRates,</a>
+<a class="sourceLine" id="cb21-3" title="3">           <span class="dt">failRates =</span> design2sa<span class="op">$</span>failRates <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">hr =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb21-4" title="4">           <span class="dt">upar =</span> b2sa,</a>
+<a class="sourceLine" id="cb21-5" title="5">           <span class="dt">lpar =</span> a2sa,</a>
+<a class="sourceLine" id="cb21-6" title="6">           <span class="dt">events =</span> events,</a>
+<a class="sourceLine" id="cb21-7" title="7">           <span class="dt">maxEvents =</span> <span class="kw">max</span>(events)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-8" title="8"><span class="co"># filter eliminates bounds that are infinite</span></a>
+<a class="sourceLine" id="cb21-9" title="9"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">abs</span>(Z) <span class="op">&lt;</span><span class="st"> </span><span class="ot">Inf</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>))</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Analysis</th>
+<th align="left">Bound</th>
+<th align="right">Z</th>
+<th align="right">Probability</th>
+<th align="right">Time</th>
+<th align="right">Events</th>
+<th align="right">AHR</th>
+<th align="right">theta</th>
+<th align="right">info</th>
+<th align="right">info0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">Upper</td>
+<td align="right">3.0</td>
+<td align="right">0</td>
+<td align="right">16</td>
+<td align="right">166.710</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">41.677</td>
+<td align="right">41.68</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="left">Upper</td>
+<td align="right">2.4</td>
+<td align="right">0</td>
+<td align="right">22</td>
+<td align="right">250.065</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">62.516</td>
+<td align="right">62.52</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="left">Upper</td>
+<td align="right">2.0</td>
+<td align="right">0</td>
+<td align="right">31</td>
+<td align="right">333.420</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">83.355</td>
+<td align="right">83.35</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">Lower</td>
+<td align="right">-1.6</td>
+<td align="right">0</td>
+<td align="right">12</td>
+<td align="right">100.025</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">25.006</td>
+<td align="right">25.01</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">Lower</td>
+<td align="right">-1.6</td>
+<td align="right">0</td>
+<td align="right">16</td>
+<td align="right">166.710</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">41.677</td>
+<td align="right">41.68</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="confirmation-by-simulation" class="section level1">
+<h1>Confirmation by Simulation</h1>
+<p>We do a small simulation to approximate the boundary crossing probabilities just shown in the 2-sided asymmetric design <code>design2sa</code>. First, we generate test statistics for each analysis for a number of simulated trials.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">fr &lt;-<span class="st"> </span><span class="kw">simfix2simPWSurv</span>(<span class="dt">failRates =</span> failRates)</a>
+<a class="sourceLine" id="cb22-2" title="2">nsim &lt;-<span class="st"> </span><span class="dv">200</span> <span class="co"># Number of trial simulations</span></a>
+<a class="sourceLine" id="cb22-3" title="3">simresult &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb22-4" title="4">N &lt;-<span class="st"> </span><span class="kw">ceiling</span>(design2sa<span class="op">$</span>enrollRates <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">sum</span>(rate<span class="op">/</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>duration)))<span class="op">*</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb22-5" title="5">K &lt;-<span class="st"> </span><span class="kw">max</span>(design2sa<span class="op">$</span>bounds<span class="op">$</span>Analysis)</a>
+<a class="sourceLine" id="cb22-6" title="6">events &lt;-<span class="st"> </span><span class="kw">ceiling</span>(<span class="kw">sort</span>(<span class="kw">unique</span>(design2sa<span class="op">$</span>bounds<span class="op">$</span>Events)))</a>
+<a class="sourceLine" id="cb22-7" title="7"></a>
+<a class="sourceLine" id="cb22-8" title="8"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nsim){</a>
+<a class="sourceLine" id="cb22-9" title="9">  sim &lt;-<span class="st"> </span><span class="kw">simPWSurv</span>(<span class="dt">n =</span> <span class="kw">as.numeric</span>(N),</a>
+<a class="sourceLine" id="cb22-10" title="10">                   <span class="dt">enrollRates =</span> design2sa<span class="op">$</span>enrollRates,</a>
+<a class="sourceLine" id="cb22-11" title="11">                   <span class="dt">failRates =</span> fr<span class="op">$</span>failRates,</a>
+<a class="sourceLine" id="cb22-12" title="12">                   <span class="dt">dropoutRates =</span> fr<span class="op">$</span>dropoutRates</a>
+<a class="sourceLine" id="cb22-13" title="13">                  )</a>
+<a class="sourceLine" id="cb22-14" title="14">  <span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>K){</a>
+<a class="sourceLine" id="cb22-15" title="15">    Z &lt;-<span class="st"> </span>sim <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">cutDataAtCount</span>(events[k]) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># cut simulation for analysis at targeted events</span></a>
+<a class="sourceLine" id="cb22-16" title="16"><span class="st">         </span><span class="kw">tensurv</span>(<span class="dt">txval =</span> <span class="st">&quot;Experimental&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tenFH</span>(<span class="dt">rg =</span> <span class="kw">tibble</span>(<span class="dt">rho =</span> <span class="dv">0</span>, <span class="dt">gamma =</span> <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb22-17" title="17">    simresult &lt;-<span class="st"> </span><span class="kw">rbind</span>(simresult,</a>
+<a class="sourceLine" id="cb22-18" title="18">                       <span class="kw">tibble</span>(<span class="dt">sim =</span> i, <span class="dt">k =</span> k, <span class="dt">Z =</span> <span class="op">-</span>Z<span class="op">$</span>Z)) <span class="co"># Change sign for Z</span></a>
+<a class="sourceLine" id="cb22-19" title="19">  }</a>
+<a class="sourceLine" id="cb22-20" title="20">}</a></code></pre></div>
+<p>Now we analyze the individual trials and summarize results.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">bds &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">k =</span> <span class="kw">sort</span>(<span class="kw">unique</span>(design2sa<span class="op">$</span>bounds<span class="op">$</span>Analysis)),</a>
+<a class="sourceLine" id="cb23-2" title="2">            <span class="dt">upper =</span> (design2sa<span class="op">$</span>bounds <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Bound <span class="op">==</span><span class="st"> &quot;Upper&quot;</span>))<span class="op">$</span>Z,</a>
+<a class="sourceLine" id="cb23-3" title="3">            <span class="dt">lower =</span> (design2sa<span class="op">$</span>bounds <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Bound <span class="op">==</span><span class="st"> &quot;Lower&quot;</span>))<span class="op">$</span>Z</a>
+<a class="sourceLine" id="cb23-4" title="4">)</a>
+<a class="sourceLine" id="cb23-5" title="5">trialsum &lt;-<span class="st"> </span>simresult <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-6" title="6"><span class="st">            </span><span class="kw">full_join</span>(bds, <span class="dt">by =</span> <span class="st">&quot;k&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-7" title="7"><span class="st">            </span><span class="kw">filter</span>(Z <span class="op">&lt;</span><span class="st"> </span>lower <span class="op">|</span><span class="st"> </span>Z <span class="op">&gt;=</span><span class="st"> </span>upper <span class="op">|</span><span class="st"> </span>k <span class="op">==</span><span class="st"> </span>K) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-8" title="8"><span class="st">            </span><span class="kw">group_by</span>(sim) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-9" title="9"><span class="st">            </span><span class="kw">slice</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-10" title="10"><span class="st">            </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb23-11" title="11">trialsum <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>(<span class="dt">nsim =</span> <span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb23-12" title="12">                       <span class="st">&quot;Early futility (%)&quot;</span> =<span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">mean</span>(Z <span class="op">&lt;</span><span class="st"> </span>lower),</a>
+<a class="sourceLine" id="cb23-13" title="13">                       <span class="st">&quot;Power (%)&quot;</span> =<span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">mean</span>(Z <span class="op">&gt;=</span><span class="st"> </span>upper))</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["nsim"],"name":[1],"type":["int"],"align":["right"]},{"label":["Early futility (%)"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Power (%)"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"200","2":"0","3":"92"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">xx &lt;-<span class="st"> </span>trialsum <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Positive =</span> (Z <span class="op">&gt;=</span><span class="st"> </span>upper))</a>
+<a class="sourceLine" id="cb24-2" title="2"><span class="kw">table</span>(xx<span class="op">$</span>k, xx<span class="op">$</span>Positive)</a>
+<a class="sourceLine" id="cb24-3" title="3"><span class="co">#&gt;    </span></a>
+<a class="sourceLine" id="cb24-4" title="4"><span class="co">#&gt;     FALSE TRUE</span></a>
+<a class="sourceLine" id="cb24-5" title="5"><span class="co">#&gt;   2     0   10</span></a>
+<a class="sourceLine" id="cb24-6" title="6"><span class="co">#&gt;   3     0  107</span></a>
+<a class="sourceLine" id="cb24-7" title="7"><span class="co">#&gt;   4    16   67</span></a></code></pre></div>
+</div>
+<div id="differences-from-gsdesign" class="section level1">
+<h1>Differences From <strong>gsDesign</strong></h1>
+<p>The sample size computation from the <strong>gsdmvn</strong> package is slightly different than from the <strong>gsDesign</strong> package for proportional hazards model. We demonstrate this with the bounds for the 1-sided test above under a proportional hazards model with an underlying hazard ratio of 0.7.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">design1sPH &lt;-<span class="st"> </span><span class="kw">gs_design_nph</span>(<span class="dt">enrollRates =</span> enrollRates,</a>
+<a class="sourceLine" id="cb25-2" title="2">                        <span class="dt">failRates =</span> failRates <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">hr =</span> <span class="fl">.7</span>),</a>
+<a class="sourceLine" id="cb25-3" title="3">                        <span class="dt">analysisTimes =</span> <span class="dv">36</span>, <span class="co"># Trial duration</span></a>
+<a class="sourceLine" id="cb25-4" title="4">                        <span class="dt">upar =</span> b,</a>
+<a class="sourceLine" id="cb25-5" title="5">                        <span class="dt">lpar =</span> <span class="kw">rep</span>(<span class="op">-</span><span class="ot">Inf</span>, <span class="dv">3</span>), <span class="co"># No futility bound</span></a>
+<a class="sourceLine" id="cb25-6" title="6">                        <span class="dt">IF =</span> <span class="kw">c</span>(.<span class="dv">5</span>, <span class="fl">.75</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb25-7" title="7">                        )</a>
+<a class="sourceLine" id="cb25-8" title="8">design1sPH<span class="op">$</span>enrollRates <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>()</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Stratum</th>
+<th align="right">duration</th>
+<th align="right">rate</th>
+<th align="right">N</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">All</td>
+<td align="right">2</td>
+<td align="right">12.76886</td>
+<td align="right">25.53771</td>
+</tr>
+<tr class="even">
+<td align="left">All</td>
+<td align="right">2</td>
+<td align="right">25.53771</td>
+<td align="right">76.61314</td>
+</tr>
+<tr class="odd">
+<td align="left">All</td>
+<td align="right">2</td>
+<td align="right">38.30657</td>
+<td align="right">153.22628</td>
+</tr>
+<tr class="even">
+<td align="left">All</td>
+<td align="right">6</td>
+<td align="right">51.07543</td>
+<td align="right">459.67883</td>
+</tr>
+</tbody>
+</table>
+<p>This results in total sample size:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">design1sPH<span class="op">$</span>enrollRates <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tail</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(N)</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["N"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"459.6788"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Now we derive a design with the same targeted properties using the <strong>gsDesign</strong> package.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">x &lt;-<span class="st"> </span><span class="kw">gsSurv</span>(<span class="dt">k =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb27-2" title="2">            <span class="dt">test.type =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb27-3" title="3">            <span class="dt">alpha =</span> <span class="fl">.025</span>,</a>
+<a class="sourceLine" id="cb27-4" title="4">            <span class="dt">beta =</span> <span class="fl">.1</span>,</a>
+<a class="sourceLine" id="cb27-5" title="5">            <span class="dt">timing =</span> <span class="kw">c</span>(.<span class="dv">5</span>, <span class="fl">.75</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb27-6" title="6">            <span class="dt">sfu =</span> sfLDOF,</a>
+<a class="sourceLine" id="cb27-7" title="7">            <span class="dt">lambda =</span> <span class="kw">log</span>(<span class="dv">2</span>) <span class="op">/</span><span class="st"> </span>medianSurv,</a>
+<a class="sourceLine" id="cb27-8" title="8">            <span class="dt">hr =</span> <span class="fl">.7</span>, </a>
+<a class="sourceLine" id="cb27-9" title="9">            <span class="dt">eta =</span> <span class="fl">.001</span>, <span class="co"># dropout rate</span></a>
+<a class="sourceLine" id="cb27-10" title="10">            <span class="dt">gamma =</span> <span class="kw">c</span>(.<span class="dv">25</span>, <span class="fl">.5</span>, <span class="fl">.75</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb27-11" title="11">            <span class="dt">R =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">6</span>),</a>
+<a class="sourceLine" id="cb27-12" title="12">            <span class="dt">minfup =</span> <span class="dv">24</span>,</a>
+<a class="sourceLine" id="cb27-13" title="13">            <span class="dt">T =</span> <span class="dv">36</span>)</a>
+<a class="sourceLine" id="cb27-14" title="14"><span class="kw">gsBoundSummary</span>(x) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Analysis</th>
+<th align="left">Value</th>
+<th align="right">Efficacy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">IA 1: 50%</td>
+<td align="left">Z</td>
+<td align="right">2.9626</td>
+</tr>
+<tr class="even">
+<td align="left">N: 456</td>
+<td align="left">p (1-sided)</td>
+<td align="right">0.0015</td>
+</tr>
+<tr class="odd">
+<td align="left">Events: 168</td>
+<td align="left">~HR at bound</td>
+<td align="right">0.6328</td>
+</tr>
+<tr class="even">
+<td align="left">Month: 17</td>
+<td align="left">P(Cross) if HR=1</td>
+<td align="right">0.0015</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">P(Cross) if HR=0.7</td>
+<td align="right">0.2580</td>
+</tr>
+<tr class="even">
+<td align="left">IA 2: 75%</td>
+<td align="left">Z</td>
+<td align="right">2.3590</td>
+</tr>
+<tr class="odd">
+<td align="left">N: 456</td>
+<td align="left">p (1-sided)</td>
+<td align="right">0.0092</td>
+</tr>
+<tr class="even">
+<td align="left">Events: 252</td>
+<td align="left">~HR at bound</td>
+<td align="right">0.7427</td>
+</tr>
+<tr class="odd">
+<td align="left">Month: 24</td>
+<td align="left">P(Cross) if HR=1</td>
+<td align="right">0.0096</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">P(Cross) if HR=0.7</td>
+<td align="right">0.6853</td>
+</tr>
+<tr class="odd">
+<td align="left">Final</td>
+<td align="left">Z</td>
+<td align="right">2.0141</td>
+</tr>
+<tr class="even">
+<td align="left">N: 456</td>
+<td align="left">p (1-sided)</td>
+<td align="right">0.0220</td>
+</tr>
+<tr class="odd">
+<td align="left">Events: 336</td>
+<td align="left">~HR at bound</td>
+<td align="right">0.8025</td>
+</tr>
+<tr class="even">
+<td align="left">Month: 36</td>
+<td align="left">P(Cross) if HR=1</td>
+<td align="right">0.0250</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">P(Cross) if HR=0.7</td>
+<td align="right">0.9000</td>
+</tr>
+</tbody>
+</table>
+<p>Enrollment rates are:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">x<span class="op">$</span>gamma <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>()</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Stratum 1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">0-2</td>
+<td align="right">12.61705</td>
+</tr>
+<tr class="even">
+<td align="left">2-4</td>
+<td align="right">25.23410</td>
+</tr>
+<tr class="odd">
+<td align="left">4-6</td>
+<td align="right">37.85115</td>
+</tr>
+<tr class="even">
+<td align="left">6-12</td>
+<td align="right">50.46820</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-JTBook">
+<p>Jennison, Christopher, and Bruce W. Turnbull. 2000. <em>Group Sequential Methods with Applications to Clinical Trials</em>. Boca Raton, FL: Chapman; Hall/CRC.</p>
+</div>
+<div id="ref-LachinBook">
+<p>Lachin, John M. 2009. <em>Biostatistical Methods: The Assessment of Relative Risks</em>. Vol. 509. John Wiley &amp; Sons.</p>
+</div>
+<div id="ref-LanDeMets">
+<p>Lan, K. K. G., and David L. DeMets. 1983. “Discrete Sequential Boundaries for Clinical Trials.” <em>Biometrika</em> 70: 659–63.</p>
+</div>
+<div id="ref-Schoenfeld1981">
+<p>Schoenfeld, David. 1981. “The Asymptotic Properties of Nonparametric Tests for Comparing Survival Distributions.” <em>Biometrika</em> 68 (1): 316–19.</p>
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
