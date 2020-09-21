@@ -2,15 +2,19 @@ Package: gsdmvn
 Type: Package
 Title: Group sequential design with non-constant effect
 Version: 0.1.0
-Author: Keaven Anderson
-Maintainer: Keaven Anderson <keaven_anderson@merck.com>
+Authors@R: c(
+    person("Anderson", "Keaven", email = "keaven_anderson@merck.com", role = c("aut", "cre")),
+    person("Yilong", "Zhang", email = "yilong.zhang@merck.com", role = "aut"),
+    person("Shirazi", "Amin", email = "ashirazi@iastate.edu", role = "aut")
+)
 Description: Basic group sequential design computations extended.
-License: GPL-3
+License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: dplyr, tibble
 Imports: gsDesign, gsDesign2
-Suggests: testthat, mvtnorm, knitr, rmarkdown, simtrial
+Suggests: testthat, mvtnorm, knitr, rmarkdown, simtrial,
+    person("Merck & Co., Inc.", role = "cph")
 Remotes: github::keaven/simtrial, 
   github::keaven/gsDesign2
 RoxygenNote: 7.1.1
