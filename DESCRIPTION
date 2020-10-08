@@ -5,16 +5,15 @@ Version: 0.1.0
 Authors@R: c(
     person("Anderson", "Keaven", email = "keaven_anderson@merck.com", role = c("aut", "cre")),
     person("Yilong", "Zhang", email = "yilong.zhang@merck.com", role = "aut"),
-    person("Shirazi", "Amin", email = "ashirazi@iastate.edu", role = "aut")
-)
+    person("Shirazi", "Amin", email = "ashirazist@gmail.com", role = "aut"), 
+    person("Merck & Co., Inc.", role = "cph"))
 Description: Basic group sequential design computations extended.
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: dplyr, tibble
 Imports: gsDesign, gsDesign2
-Suggests: testthat, mvtnorm, knitr, rmarkdown, simtrial,
-    person("Merck & Co., Inc.", role = "cph")
+Suggests: testthat, mvtnorm, knitr, rmarkdown, simtrial
 Remotes: github::keaven/simtrial, 
   github::keaven/gsDesign2
 RoxygenNote: 7.1.1

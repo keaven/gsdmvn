@@ -156,22 +156,22 @@ Boundary family designs Wang-Tsiatis designs including the original (non-spendin
 are not supported by <code>gs_power_npe()</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gs_power_npe</span>(
-  <span class='kw'>theta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>theta1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>info</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>info1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>info0</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>binding</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>upper</span> <span class='kw'>=</span> <span class='no'>gs_b</span>,
-  <span class='kw'>lower</span> <span class='kw'>=</span> <span class='no'>gs_b</span>,
-  <span class='kw'>upar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span>(<span class='fl'>0.975</span>),
-  <span class='kw'>lpar</span> <span class='kw'>=</span> -<span class='fl'>Inf</span>,
-  <span class='kw'>test_upper</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>test_lower</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>r</span> <span class='kw'>=</span> <span class='fl'>18</span>,
-  <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>1e-06</span>
-)</pre>
+    <pre class="usage"><span class='fu'>gs_power_npe</span><span class='op'>(</span>
+  theta <span class='op'>=</span> <span class='fl'>0.1</span>,
+  theta1 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  info <span class='op'>=</span> <span class='fl'>1</span>,
+  info1 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  info0 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  binding <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  upper <span class='op'>=</span> <span class='va'>gs_b</span>,
+  lower <span class='op'>=</span> <span class='va'>gs_b</span>,
+  upar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='fl'>0.975</span><span class='op'>)</span>,
+  lpar <span class='op'>=</span> <span class='op'>-</span><span class='cn'>Inf</span>,
+  test_upper <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  test_lower <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  r <span class='op'>=</span> <span class='fl'>18</span>,
+  tol <span class='op'>=</span> <span class='fl'>1e-06</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -242,108 +242,119 @@ a logical vector of the same length as <code>info</code> should indicate which a
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Keaven Anderson <a href='mailto:keaven\_anderson@merck.'>keaven\_anderson@merck.</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>gsDesign</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>gsDesign</span><span class='op'>)</span>
 <span class='co'># Default (single analysis; Type I error controlled)</span>
-<span class='fu'>gs_power_npe</span>(<span class='kw'>theta</span><span class='kw'>=</span><span class='fl'>0</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(<span class='no'>Bound</span><span class='kw'>==</span><span class='st'>"Upper"</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 9
+<span class='fu'>gs_power_npe</span><span class='op'>(</span>theta<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Bound</span><span class='op'>==</span><span class='st'>"Upper"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 9</span><span>
 #&gt;   Analysis Bound     Z Probability theta theta1  info info0 info1
-#&gt;      &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1        1 Upper  1.96       0.025     0      0     1     1     1</div><div class='input'>
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 Upper  1.96       0.025     0      0     1     1     1</div><div class='input'>
 <span class='co'># Fixed bound</span>
-<span class='fu'>gs_power_npe</span>(<span class='kw'>theta</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>.1</span>, <span class='fl'>.2</span>, <span class='fl'>.3</span>), <span class='kw'>info</span> <span class='kw'>=</span> (<span class='fl'>1</span>:<span class='fl'>3</span>) * <span class='fl'>40</span>, <span class='kw'>info0</span> <span class='kw'>=</span> (<span class='fl'>1</span>:<span class='fl'>3</span>) * <span class='fl'>40</span>,
-              <span class='kw'>upper</span> <span class='kw'>=</span> <span class='no'>gs_b</span>, <span class='kw'>upar</span> <span class='kw'>=</span> <span class='kw pkg'>gsDesign</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/gsDesign/man/gsDesign.html'>gsDesign</a></span>(<span class='kw'>k</span><span class='kw'>=</span><span class='fl'>3</span>,<span class='kw'>sfu</span><span class='kw'>=</span><span class='kw pkg'>gsDesign</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/gsDesign/man/sfLDOF.html'>sfLDOF</a></span>)$<span class='no'>upper</span>$<span class='no'>bound</span>,
-              <span class='kw'>lower</span> <span class='kw'>=</span> <span class='no'>gs_b</span>, <span class='kw'>lpar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>0</span>))</div><div class='output co'>#&gt; # A tibble: 6 x 9
+<span class='fu'>gs_power_npe</span><span class='op'>(</span>theta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>.1</span>, <span class='fl'>.2</span>, <span class='fl'>.3</span><span class='op'>)</span>, info <span class='op'>=</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>40</span>, info0 <span class='op'>=</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>40</span>,
+              upper <span class='op'>=</span> <span class='va'>gs_b</span>, upar <span class='op'>=</span> <span class='fu'>gsDesign</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/gsDesign/man/gsDesign.html'>gsDesign</a></span><span class='op'>(</span>k<span class='op'>=</span><span class='fl'>3</span>,sfu<span class='op'>=</span><span class='fu'>gsDesign</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/gsDesign/man/sfLDOF.html'>sfLDOF</a></span><span class='op'>)</span><span class='op'>$</span><span class='va'>upper</span><span class='op'>$</span><span class='va'>bound</span>,
+              lower <span class='op'>=</span> <span class='va'>gs_b</span>, lpar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 9</span><span>
 #&gt;   Analysis Bound     Z Probability theta theta1  info info0 info1
-#&gt;      &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1        1 Upper  3.71     0.00104   0.1    0.1    40    40    40
-#&gt; 2        2 Upper  2.51     0.235     0.2    0.2    80    80    80
-#&gt; 3        3 Upper  1.99     0.869     0.3    0.3   120   120   120
-#&gt; 4        1 Lower -1        0.0513    0.1    0.1    40    40    40
-#&gt; 5        2 Lower  0        0.0715    0.2    0.2    80    80    80
-#&gt; 6        3 Lower  0        0.0715    0.3    0.3   120   120   120</div><div class='input'>
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 Upper  3.71     0.001</span><span style='text-decoration: underline;'>04</span><span>   0.1    0.1    40    40    40
+#&gt; </span><span style='color: #555555;'>2</span><span>        2 Upper  2.51     0.235     0.2    0.2    80    80    80
+#&gt; </span><span style='color: #555555;'>3</span><span>        3 Upper  1.99     0.869     0.3    0.3   120   120   120
+#&gt; </span><span style='color: #555555;'>4</span><span>        1 Lower -</span><span style='color: #BB0000;'>1</span><span>        0.051</span><span style='text-decoration: underline;'>3</span><span>    0.1    0.1    40    40    40
+#&gt; </span><span style='color: #555555;'>5</span><span>        2 Lower  0        0.071</span><span style='text-decoration: underline;'>5</span><span>    0.2    0.2    80    80    80
+#&gt; </span><span style='color: #555555;'>6</span><span>        3 Lower  0        0.071</span><span style='text-decoration: underline;'>5</span><span>    0.3    0.3   120   120   120</div><div class='input'>
 <span class='co'># Same fixed efficacy bounds, no futility bound (i.e., non-binding bound), null hypothesis</span>
-<span class='fu'>gs_power_npe</span>(<span class='kw'>theta</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>0</span>,<span class='fl'>3</span>), <span class='kw'>info</span> <span class='kw'>=</span> (<span class='fl'>1</span>:<span class='fl'>3</span>) * <span class='fl'>40</span>,
-<span class='kw'>upar</span> <span class='kw'>=</span> <span class='kw pkg'>gsDesign</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/gsDesign/man/gsDesign.html'>gsDesign</a></span>(<span class='kw'>k</span><span class='kw'>=</span><span class='fl'>3</span>,<span class='kw'>sfu</span><span class='kw'>=</span><span class='kw pkg'>gsDesign</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/gsDesign/man/sfLDOF.html'>sfLDOF</a></span>)$<span class='no'>upper</span>$<span class='no'>bound</span>,
-<span class='kw'>lpar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(-<span class='fl'>Inf</span>, <span class='fl'>3</span>)) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(<span class='no'>Bound</span><span class='kw'>==</span><span class='st'>"Upper"</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 9
+<span class='fu'>gs_power_npe</span><span class='op'>(</span>theta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>3</span><span class='op'>)</span>, info <span class='op'>=</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>40</span>,
+upar <span class='op'>=</span> <span class='fu'>gsDesign</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/gsDesign/man/gsDesign.html'>gsDesign</a></span><span class='op'>(</span>k<span class='op'>=</span><span class='fl'>3</span>,sfu<span class='op'>=</span><span class='fu'>gsDesign</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/gsDesign/man/sfLDOF.html'>sfLDOF</a></span><span class='op'>)</span><span class='op'>$</span><span class='va'>upper</span><span class='op'>$</span><span class='va'>bound</span>,
+lpar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='op'>-</span><span class='cn'>Inf</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Bound</span><span class='op'>==</span><span class='st'>"Upper"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
 #&gt;   Analysis Bound     Z Probability theta theta1  info info0 info1
-#&gt;      &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1        1 Upper  3.71    0.000104     0      0    40    40    40
-#&gt; 2        2 Upper  2.51    0.00605      0      0    80    80    80
-#&gt; 3        3 Upper  1.99    0.0250       0      0   120   120   120</div><div class='input'>
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 Upper  3.71    0.000</span><span style='text-decoration: underline;'>104</span><span>     0      0    40    40    40
+#&gt; </span><span style='color: #555555;'>2</span><span>        2 Upper  2.51    0.006</span><span style='text-decoration: underline;'>05</span><span>      0      0    80    80    80
+#&gt; </span><span style='color: #555555;'>3</span><span>        3 Upper  1.99    0.025</span><span style='text-decoration: underline;'>0</span><span>       0      0   120   120   120</div><div class='input'>
 <span class='co'># Fixed bound with futility only at analysis 1; efficacy only at analyses 2, 3</span>
-<span class='fu'>gs_power_npe</span>(<span class='kw'>theta</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>.1</span>, <span class='fl'>.2</span>, <span class='fl'>.3</span>), <span class='kw'>info</span> <span class='kw'>=</span> (<span class='fl'>1</span>:<span class='fl'>3</span>) * <span class='fl'>40</span>, <span class='kw'>upar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>Inf</span>, <span class='fl'>3</span>, <span class='fl'>2</span>), <span class='kw'>lpar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span>(<span class='fl'>.1</span>), -<span class='fl'>Inf</span>, -<span class='fl'>Inf</span>))</div><div class='output co'>#&gt; # A tibble: 6 x 9
+<span class='fu'>gs_power_npe</span><span class='op'>(</span>theta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>.1</span>, <span class='fl'>.2</span>, <span class='fl'>.3</span><span class='op'>)</span>, info <span class='op'>=</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>40</span>, upar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>Inf</span>, <span class='fl'>3</span>, <span class='fl'>2</span><span class='op'>)</span>, lpar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='fl'>.1</span><span class='op'>)</span>, <span class='op'>-</span><span class='cn'>Inf</span>, <span class='op'>-</span><span class='cn'>Inf</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 9</span><span>
 #&gt;   Analysis Bound       Z Probability theta theta1  info info0 info1
-#&gt;      &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1        1 Upper  Inf         0        0.1    0.1    40    40    40
-#&gt; 2        2 Upper    3         0.113    0.2    0.2    80    80    80
-#&gt; 3        3 Upper    2         0.887    0.3    0.3   120   120   120
-#&gt; 4        1 Lower   -1.28      0.0278   0.1    0.1    40    40    40
-#&gt; 5        2 Lower -Inf         0.0278   0.2    0.2    80    80    80
-#&gt; 6        3 Lower -Inf         0.0278   0.3    0.3   120   120   120</div><div class='input'>
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 Upper  </span><span style='color: #BB0000;'>Inf</span><span>         0        0.1    0.1    40    40    40
+#&gt; </span><span style='color: #555555;'>2</span><span>        2 Upper    3         0.113    0.2    0.2    80    80    80
+#&gt; </span><span style='color: #555555;'>3</span><span>        3 Upper    2         0.887    0.3    0.3   120   120   120
+#&gt; </span><span style='color: #555555;'>4</span><span>        1 Lower   -</span><span style='color: #BB0000;'>1.28</span><span>      0.027</span><span style='text-decoration: underline;'>8</span><span>   0.1    0.1    40    40    40
+#&gt; </span><span style='color: #555555;'>5</span><span>        2 Lower -</span><span style='color: #BB0000;'>Inf</span><span>         0.027</span><span style='text-decoration: underline;'>8</span><span>   0.2    0.2    80    80    80
+#&gt; </span><span style='color: #555555;'>6</span><span>        3 Lower -</span><span style='color: #BB0000;'>Inf</span><span>         0.027</span><span style='text-decoration: underline;'>8</span><span>   0.3    0.3   120   120   120</div><div class='input'>
 <span class='co'># Spending function bounds</span>
 <span class='co'># Lower spending based on non-zero effect</span>
-<span class='fu'>gs_power_npe</span>(<span class='kw'>theta</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>.1</span>, <span class='fl'>.2</span>, <span class='fl'>.3</span>), <span class='kw'>info</span> <span class='kw'>=</span> (<span class='fl'>1</span>:<span class='fl'>3</span>) * <span class='fl'>40</span>,
-             <span class='kw'>upper</span> <span class='kw'>=</span> <span class='no'>gs_spending_bound</span>,
-             <span class='kw'>upar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>sf</span> <span class='kw'>=</span> <span class='kw pkg'>gsDesign</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/gsDesign/man/sfLDOF.html'>sfLDOF</a></span>, <span class='kw'>total_spend</span> <span class='kw'>=</span> <span class='fl'>0.025</span>, <span class='kw'>param</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>timing</span> <span class='kw'>=</span> <span class='kw'>NULL</span>),
-             <span class='kw'>lower</span> <span class='kw'>=</span> <span class='no'>gs_spending_bound</span>,
-             <span class='kw'>lpar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>sf</span> <span class='kw'>=</span> <span class='kw pkg'>gsDesign</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/gsDesign/man/sfHSD.html'>sfHSD</a></span>, <span class='kw'>total_spend</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>param</span> <span class='kw'>=</span> -<span class='fl'>1</span>, <span class='kw'>timing</span> <span class='kw'>=</span> <span class='kw'>NULL</span>))</div><div class='output co'>#&gt; # A tibble: 6 x 9
+<span class='fu'>gs_power_npe</span><span class='op'>(</span>theta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>.1</span>, <span class='fl'>.2</span>, <span class='fl'>.3</span><span class='op'>)</span>, info <span class='op'>=</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>40</span>,
+             upper <span class='op'>=</span> <span class='va'>gs_spending_bound</span>,
+             upar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>sf <span class='op'>=</span> <span class='fu'>gsDesign</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/gsDesign/man/sfLDOF.html'>sfLDOF</a></span>, total_spend <span class='op'>=</span> <span class='fl'>0.025</span>, param <span class='op'>=</span> <span class='cn'>NULL</span>, timing <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>,
+             lower <span class='op'>=</span> <span class='va'>gs_spending_bound</span>,
+             lpar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>sf <span class='op'>=</span> <span class='fu'>gsDesign</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/gsDesign/man/sfHSD.html'>sfHSD</a></span>, total_spend <span class='op'>=</span> <span class='fl'>0.1</span>, param <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>, timing <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 9</span><span>
 #&gt;   Analysis Bound       Z Probability theta theta1  info info0 info1
-#&gt;      &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1        1 Upper  3.71       0.00104   0.1    0.1    40    40    40
-#&gt; 2        2 Upper  2.51       0.235     0.2    0.2    80    80    80
-#&gt; 3        3 Upper  1.99       0.883     0.3    0.3   120   120   120
-#&gt; 4        1 Lower -1.36       0.0230    0.1    0.1    40    40    40
-#&gt; 5        2 Lower  0.0726     0.0552    0.2    0.2    80    80    80
-#&gt; 6        3 Lower  1.86       0.1       0.3    0.3   120   120   120</div><div class='input'>
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 Upper  3.71       0.001</span><span style='text-decoration: underline;'>04</span><span>   0.1    0.1    40    40    40
+#&gt; </span><span style='color: #555555;'>2</span><span>        2 Upper  2.51       0.235     0.2    0.2    80    80    80
+#&gt; </span><span style='color: #555555;'>3</span><span>        3 Upper  1.99       0.883     0.3    0.3   120   120   120
+#&gt; </span><span style='color: #555555;'>4</span><span>        1 Lower -</span><span style='color: #BB0000;'>1.36</span><span>       0.023</span><span style='text-decoration: underline;'>0</span><span>    0.1    0.1    40    40    40
+#&gt; </span><span style='color: #555555;'>5</span><span>        2 Lower  0.072</span><span style='text-decoration: underline;'>6</span><span>     0.055</span><span style='text-decoration: underline;'>2</span><span>    0.2    0.2    80    80    80
+#&gt; </span><span style='color: #555555;'>6</span><span>        3 Lower  1.86       0.1       0.3    0.3   120   120   120</div><div class='input'>
 <span class='co'># Same bounds, but power under different theta</span>
-<span class='fu'>gs_power_npe</span>(<span class='kw'>theta</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>.15</span>, <span class='fl'>.25</span>, <span class='fl'>.35</span>), <span class='kw'>theta1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>.1</span>, <span class='fl'>.2</span>, <span class='fl'>.3</span>), <span class='kw'>info</span> <span class='kw'>=</span> (<span class='fl'>1</span>:<span class='fl'>3</span>) * <span class='fl'>40</span>,
-             <span class='kw'>upper</span> <span class='kw'>=</span> <span class='no'>gs_spending_bound</span>,
-             <span class='kw'>upar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>sf</span> <span class='kw'>=</span> <span class='kw pkg'>gsDesign</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/gsDesign/man/sfLDOF.html'>sfLDOF</a></span>, <span class='kw'>total_spend</span> <span class='kw'>=</span> <span class='fl'>0.025</span>, <span class='kw'>param</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>timing</span> <span class='kw'>=</span> <span class='kw'>NULL</span>),
-             <span class='kw'>lower</span> <span class='kw'>=</span> <span class='no'>gs_spending_bound</span>,
-             <span class='kw'>lpar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>sf</span> <span class='kw'>=</span> <span class='kw pkg'>gsDesign</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/gsDesign/man/sfHSD.html'>sfHSD</a></span>, <span class='kw'>total_spend</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>param</span> <span class='kw'>=</span> -<span class='fl'>1</span>, <span class='kw'>timing</span> <span class='kw'>=</span> <span class='kw'>NULL</span>))</div><div class='output co'>#&gt; # A tibble: 6 x 9
+<span class='fu'>gs_power_npe</span><span class='op'>(</span>theta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>.15</span>, <span class='fl'>.25</span>, <span class='fl'>.35</span><span class='op'>)</span>, theta1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>.1</span>, <span class='fl'>.2</span>, <span class='fl'>.3</span><span class='op'>)</span>, info <span class='op'>=</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>40</span>,
+             upper <span class='op'>=</span> <span class='va'>gs_spending_bound</span>,
+             upar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>sf <span class='op'>=</span> <span class='fu'>gsDesign</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/gsDesign/man/sfLDOF.html'>sfLDOF</a></span>, total_spend <span class='op'>=</span> <span class='fl'>0.025</span>, param <span class='op'>=</span> <span class='cn'>NULL</span>, timing <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>,
+             lower <span class='op'>=</span> <span class='va'>gs_spending_bound</span>,
+             lpar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>sf <span class='op'>=</span> <span class='fu'>gsDesign</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/gsDesign/man/sfHSD.html'>sfHSD</a></span>, total_spend <span class='op'>=</span> <span class='fl'>0.1</span>, param <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>, timing <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 9</span><span>
 #&gt;   Analysis Bound       Z Probability theta theta1  info info0 info1
-#&gt;      &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1        1 Upper  3.71       0.00288  0.15    0.1    40    40    40
-#&gt; 2        2 Upper  2.51       0.392    0.25    0.2    80    80    80
-#&gt; 3        3 Upper  1.99       0.956    0.35    0.3   120   120   120
-#&gt; 4        1 Lower -1.36       0.0104   0.15    0.1    40    40    40
-#&gt; 5        2 Lower  0.0726     0.0221   0.25    0.2    80    80    80
-#&gt; 6        3 Lower  1.86       0.0370   0.35    0.3   120   120   120</div><div class='input'>
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 Upper  3.71       0.002</span><span style='text-decoration: underline;'>88</span><span>  0.15    0.1    40    40    40
+#&gt; </span><span style='color: #555555;'>2</span><span>        2 Upper  2.51       0.392    0.25    0.2    80    80    80
+#&gt; </span><span style='color: #555555;'>3</span><span>        3 Upper  1.99       0.956    0.35    0.3   120   120   120
+#&gt; </span><span style='color: #555555;'>4</span><span>        1 Lower -</span><span style='color: #BB0000;'>1.36</span><span>       0.010</span><span style='text-decoration: underline;'>4</span><span>   0.15    0.1    40    40    40
+#&gt; </span><span style='color: #555555;'>5</span><span>        2 Lower  0.072</span><span style='text-decoration: underline;'>6</span><span>     0.022</span><span style='text-decoration: underline;'>1</span><span>   0.25    0.2    80    80    80
+#&gt; </span><span style='color: #555555;'>6</span><span>        3 Lower  1.86       0.037</span><span style='text-decoration: underline;'>0</span><span>   0.35    0.3   120   120   120</div><div class='input'>
 <span class='co'># Two-sided symmetric spend, O'Brien-Fleming spending</span>
 <span class='co'># Typically, 2-sided bounds are binding</span>
-<span class='no'>xx</span> <span class='kw'>&lt;-</span> <span class='fu'>gs_power_npe</span>(<span class='kw'>theta</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>0</span>, <span class='fl'>3</span>), <span class='kw'>theta1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>0</span>, <span class='fl'>3</span>), <span class='kw'>info</span> <span class='kw'>=</span> (<span class='fl'>1</span>:<span class='fl'>3</span>) * <span class='fl'>40</span>,
-                   <span class='kw'>upper</span> <span class='kw'>=</span> <span class='no'>gs_spending_bound</span>,
-                   <span class='kw'>binding</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-                   <span class='kw'>upar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>sf</span> <span class='kw'>=</span> <span class='kw pkg'>gsDesign</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/gsDesign/man/sfLDOF.html'>sfLDOF</a></span>, <span class='kw'>total_spend</span> <span class='kw'>=</span> <span class='fl'>0.025</span>, <span class='kw'>param</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>timing</span> <span class='kw'>=</span> <span class='kw'>NULL</span>),
-                   <span class='kw'>lower</span> <span class='kw'>=</span> <span class='no'>gs_spending_bound</span>,
-                   <span class='kw'>lpar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>sf</span> <span class='kw'>=</span> <span class='kw pkg'>gsDesign</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/gsDesign/man/sfLDOF.html'>sfLDOF</a></span>, <span class='kw'>total_spend</span> <span class='kw'>=</span> <span class='fl'>0.025</span>, <span class='kw'>param</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>timing</span> <span class='kw'>=</span> <span class='kw'>NULL</span>))
-<span class='no'>xx</span></div><div class='output co'>#&gt; # A tibble: 6 x 9
+<span class='va'>xx</span> <span class='op'>&lt;-</span> <span class='fu'>gs_power_npe</span><span class='op'>(</span>theta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>3</span><span class='op'>)</span>, theta1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>3</span><span class='op'>)</span>, info <span class='op'>=</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>40</span>,
+                   upper <span class='op'>=</span> <span class='va'>gs_spending_bound</span>,
+                   binding <span class='op'>=</span> <span class='cn'>TRUE</span>,
+                   upar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>sf <span class='op'>=</span> <span class='fu'>gsDesign</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/gsDesign/man/sfLDOF.html'>sfLDOF</a></span>, total_spend <span class='op'>=</span> <span class='fl'>0.025</span>, param <span class='op'>=</span> <span class='cn'>NULL</span>, timing <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>,
+                   lower <span class='op'>=</span> <span class='va'>gs_spending_bound</span>,
+                   lpar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>sf <span class='op'>=</span> <span class='fu'>gsDesign</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/gsDesign/man/sfLDOF.html'>sfLDOF</a></span>, total_spend <span class='op'>=</span> <span class='fl'>0.025</span>, param <span class='op'>=</span> <span class='cn'>NULL</span>, timing <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>xx</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 9</span><span>
 #&gt;   Analysis Bound     Z Probability theta theta1  info info0 info1
-#&gt;      &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1        1 Upper  3.71    0.000104     0      0    40    40    40
-#&gt; 2        2 Upper  2.51    0.00605      0      0    80    80    80
-#&gt; 3        3 Upper  1.99    0.0250       0      0   120   120   120
-#&gt; 4        1 Lower -3.71    0.000104     0      0    40    40    40
-#&gt; 5        2 Lower -2.51    0.00605      0      0    80    80    80
-#&gt; 6        3 Lower -1.99    0.0250       0      0   120   120   120</div><div class='input'>
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 Upper  3.71    0.000</span><span style='text-decoration: underline;'>104</span><span>     0      0    40    40    40
+#&gt; </span><span style='color: #555555;'>2</span><span>        2 Upper  2.51    0.006</span><span style='text-decoration: underline;'>05</span><span>      0      0    80    80    80
+#&gt; </span><span style='color: #555555;'>3</span><span>        3 Upper  1.99    0.025        0      0   120   120   120
+#&gt; </span><span style='color: #555555;'>4</span><span>        1 Lower -</span><span style='color: #BB0000;'>3.71</span><span>    0.000</span><span style='text-decoration: underline;'>104</span><span>     0      0    40    40    40
+#&gt; </span><span style='color: #555555;'>5</span><span>        2 Lower -</span><span style='color: #BB0000;'>2.51</span><span>    0.006</span><span style='text-decoration: underline;'>05</span><span>      0      0    80    80    80
+#&gt; </span><span style='color: #555555;'>6</span><span>        3 Lower -</span><span style='color: #BB0000;'>1.99</span><span>    0.025        0      0   120   120   120</div><div class='input'>
 <span class='co'># Re-use these bounds under alternate hypothesis</span>
 <span class='co'># Always use binding = TRUE for power calculations</span>
-<span class='no'>upar</span> <span class='kw'>&lt;-</span> (<span class='no'>xx</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(<span class='no'>Bound</span><span class='kw'>==</span><span class='st'>"Upper"</span>))$<span class='no'>Z</span>
-<span class='fu'>gs_power_npe</span>(<span class='kw'>theta</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>.1</span>, <span class='fl'>.2</span>, <span class='fl'>.3</span>), <span class='kw'>info</span> <span class='kw'>=</span> (<span class='fl'>1</span>:<span class='fl'>3</span>) * <span class='fl'>40</span>,
-             <span class='kw'>binding</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-             <span class='kw'>upar</span> <span class='kw'>=</span> <span class='no'>upar</span>,
-             <span class='kw'>lpar</span> <span class='kw'>=</span> -<span class='no'>upar</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 9
+<span class='va'>upar</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>xx</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Bound</span><span class='op'>==</span><span class='st'>"Upper"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>$</span><span class='va'>Z</span>
+<span class='fu'>gs_power_npe</span><span class='op'>(</span>theta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>.1</span>, <span class='fl'>.2</span>, <span class='fl'>.3</span><span class='op'>)</span>, info <span class='op'>=</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>40</span>,
+             binding <span class='op'>=</span> <span class='cn'>TRUE</span>,
+             upar <span class='op'>=</span> <span class='va'>upar</span>,
+             lpar <span class='op'>=</span> <span class='op'>-</span><span class='va'>upar</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 9</span><span>
 #&gt;   Analysis Bound     Z Probability theta theta1  info info0 info1
-#&gt;      &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1        1 Upper  3.71  0.00104      0.1    0.1    40    40    40
-#&gt; 2        2 Upper  2.51  0.235        0.2    0.2    80    80    80
-#&gt; 3        3 Upper  1.99  0.902        0.3    0.3   120   120   120
-#&gt; 4        1 Lower -3.71  0.00000704   0.1    0.1    40    40    40
-#&gt; 5        2 Lower -2.51  0.0000151    0.2    0.2    80    80    80
-#&gt; 6        3 Lower -1.99  0.0000151    0.3    0.3   120   120   120</div><div class='input'>
-</div></pre>
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 Upper  3.71  0.001</span><span style='text-decoration: underline;'>04</span><span>      0.1    0.1    40    40    40
+#&gt; </span><span style='color: #555555;'>2</span><span>        2 Upper  2.51  0.235        0.2    0.2    80    80    80
+#&gt; </span><span style='color: #555555;'>3</span><span>        3 Upper  1.99  0.902        0.3    0.3   120   120   120
+#&gt; </span><span style='color: #555555;'>4</span><span>        1 Lower -</span><span style='color: #BB0000;'>3.71</span><span>  0.000</span><span style='text-decoration: underline;'>007</span><span>04   0.1    0.1    40    40    40
+#&gt; </span><span style='color: #555555;'>5</span><span>        2 Lower -</span><span style='color: #BB0000;'>2.51</span><span>  0.000</span><span style='text-decoration: underline;'>015</span><span>1    0.2    0.2    80    80    80
+#&gt; </span><span style='color: #555555;'>6</span><span>        3 Lower -</span><span style='color: #BB0000;'>1.99</span><span>  0.000</span><span style='text-decoration: underline;'>015</span><span>1    0.3    0.3   120   120   120</div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -355,11 +366,11 @@ a logical vector of the same length as <code>info</code> should indicate which a
 
       <footer>
       <div class="copyright">
-  <p>Developed by Keaven Anderson.</p>
+  <p>Developed by Anderson Keaven, Yilong Zhang, Shirazi Amin.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

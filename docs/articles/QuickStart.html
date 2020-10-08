@@ -81,7 +81,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="QuickStart_files/header-attrs-2.3/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Quick Start for NPH Sample Size and Power</h1>
@@ -123,7 +123,8 @@
 <li>The <strong>simtrial</strong> package is used to verify design properties using simulation.</li>
 </ul>
 <p>The <strong>gsdmvn</strong> package will likely will likely be incorporated eventually into the <strong>gsDesign2</strong> package, resulting in a fully featured design package. However, features and implementation in <strong>gsdmvn</strong> will be allowed to change as needed during the agile rapid development phase.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">gsdmvn</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gsdmvn</span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: dplyr</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
@@ -134,25 +135,26 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
 <span class="co">#&gt; Loading required package: tibble</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">gsDesign</span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gsDesign</span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: ggplot2</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">gsDesign2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">simtrial</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">knitr</span>)</pre></body></html></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gsDesign2</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">simtrial</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></pre></div>
 </div>
 <div id="enrollment-rates" class="section level1">
 <h1 class="hasAnchor">
 <a href="#enrollment-rates" class="anchor"></a>Enrollment Rates</h1>
 <p>Piecewise constant enrollment rates are input in a tabular format. Here we assume enrollment will ramp-up with 25%, 50%, and 75% of the final enrollment rate for 2 months each followed by a steady state 100% enrollment for another 6 months. The rates will be increased later to power the design appropriately. However, the fixed enrollment rate periods will remain unchanged.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">enrollRates</span> <span class="kw">&lt;-</span> <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span>(<span class="kw">Stratum</span> <span class="kw">=</span> <span class="st">"All"</span>, <span class="kw">duration</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">6</span>), <span class="kw">rate</span> <span class="kw">=</span> (<span class="fl">1</span>:<span class="fl">4</span>)/<span class="fl">4</span>)
-<span class="no">enrollRates</span>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="va">enrollRates</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>Stratum <span class="op">=</span> <span class="st">"All"</span>, duration <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">6</span><span class="op">)</span>, rate <span class="op">=</span> <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span><span class="op">/</span><span class="fl">4</span><span class="op">)</span>
+<span class="va">enrollRates</span>
 <span class="co">#&gt; # A tibble: 4 x 3</span>
 <span class="co">#&gt;   Stratum duration  rate</span>
 <span class="co">#&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 All            2  0.25</span>
 <span class="co">#&gt; 2 All            2  0.5 </span>
 <span class="co">#&gt; 3 All            2  0.75</span>
-<span class="co">#&gt; 4 All            6  1</span></pre></body></html></div>
+<span class="co">#&gt; 4 All            6  1</span></pre></div>
 </div>
 <div id="failure-and-dropout-rates" class="section level1">
 <h1 class="hasAnchor">
@@ -160,49 +162,54 @@
 <p>Constant failure and dropout rates are specified by study period and stratum; we consider a single stratum here. A hazard ratio is provided for treatment/control hazard rate for each period and stratum. The dropout rate for each period is assumed the same for each treatment group; this restriction could be eliminated in a future version, if needed. Generally, we take advantage of the identity for an exponential distribution with median <span class="math inline">\(m\)</span>, the corresponding failure rate <span class="math inline">\(\lambda\)</span> is</p>
 <p><span class="math display">\[\lambda = \log(2) / m.\]</span></p>
 <p>We consider a control group exponential time-to-event with a 12 month median. We assume a hazard ratio of 1 for 4 months, followed by a hazard ratio of 0.6 thereafter. Finally, we assume a low 0.001 exponential dropout rate for both treatment groups.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">medianSurv</span> <span class="kw">&lt;-</span> <span class="fl">12</span>
-<span class="no">failRates</span> <span class="kw">=</span> <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span>(<span class="kw">Stratum</span> <span class="kw">=</span> <span class="st">"All"</span>,
-                           <span class="kw">duration</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4</span>, <span class="fl">Inf</span>),
-                           <span class="kw">failRate</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="fl">2</span>) / <span class="no">medianSurv</span>,
-                           <span class="kw">hr</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">.6</span>),
-                           <span class="kw">dropoutRate</span> <span class="kw">=</span> <span class="fl">.001</span>)
-<span class="no">failRates</span>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="va">medianSurv</span> <span class="op">&lt;-</span> <span class="fl">12</span>
+<span class="va">failRates</span> <span class="op">=</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>Stratum <span class="op">=</span> <span class="st">"All"</span>,
+                           duration <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="cn">Inf</span><span class="op">)</span>,
+                           failRate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="va">medianSurv</span>,
+                           hr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">.6</span><span class="op">)</span>,
+                           dropoutRate <span class="op">=</span> <span class="fl">.001</span><span class="op">)</span>
+<span class="va">failRates</span>
 <span class="co">#&gt; # A tibble: 2 x 5</span>
 <span class="co">#&gt;   Stratum duration failRate    hr dropoutRate</span>
 <span class="co">#&gt;   &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 All            4   0.0578   1         0.001</span>
-<span class="co">#&gt; 2 All          Inf   0.0578   0.6       0.001</span></pre></body></html></div>
+<span class="co">#&gt; 2 All          Inf   0.0578   0.6       0.001</span></pre></div>
 </div>
 <div id="fixed-design" class="section level1">
 <h1 class="hasAnchor">
 <a href="#fixed-design" class="anchor"></a>Fixed Design</h1>
 <p>Under the above enrollment, failure and dropout rate assumptions we now derive sample size for a trial targeted to complete in 36 months with no interim analysis, 90% power and 2.5% Type I error. The parameter <code>upar = qnorm(1 - .025)</code> in this case is the upper bound for the single analysis, while the parameter <code>beta = 0.1</code> is the Type II error (1 - power). The information fraction <code>IF = 1</code> at the final analysis is just a statement that the analysis is done with 100% of the design planned endpoints. Finally, <code>lpar = -Inf</code> just means there is no futility bound for the design. The design can be derived under these assumptions.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># Type I error</span>
-<span class="no">alpha</span> <span class="kw">&lt;-</span> <span class="fl">.025</span>
-<span class="no">design</span> <span class="kw">&lt;-</span>
-   <span class="fu"><a href="../reference/gs_design_ahr.html">gs_design_ahr</a></span>(<span class="kw">enrollRates</span> <span class="kw">=</span> <span class="no">enrollRates</span>,
-                 <span class="kw">failRates</span> <span class="kw">=</span> <span class="no">failRates</span>,
-                 <span class="kw">alpha</span> <span class="kw">=</span> <span class="no">alpha</span>,
-                 <span class="kw">beta</span> <span class="kw">=</span> <span class="fl">.1</span>, <span class="co"># Type II error = 1 - power</span>
-                 <span class="kw">analysisTimes</span> <span class="kw">=</span> <span class="fl">36</span>, <span class="co"># Planned trial duration</span>
-                 <span class="kw">IF</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="co"># single analysis at information-fraction of 1</span>
-                 <span class="kw">upar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span>(<span class="fl">1</span> - <span class="no">alpha</span>), <span class="co"># Final analysis bound</span>
-                 <span class="kw">lpar</span> <span class="kw">=</span> -<span class="fl">Inf</span> <span class="co"># No futility bound</span>
-               )</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co"># Type I error</span>
+<span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">.025</span>
+<span class="va">design</span> <span class="op">&lt;-</span>
+   <span class="fu"><a href="../reference/gs_design_ahr.html">gs_design_ahr</a></span><span class="op">(</span>enrollRates <span class="op">=</span> <span class="va">enrollRates</span>,
+                 failRates <span class="op">=</span> <span class="va">failRates</span>,
+                 alpha <span class="op">=</span> <span class="va">alpha</span>,
+                 beta <span class="op">=</span> <span class="fl">.1</span>, <span class="co"># Type II error = 1 - power</span>
+                 analysisTimes <span class="op">=</span> <span class="fl">36</span>, <span class="co"># Planned trial duration</span>
+                 IF <span class="op">=</span> <span class="fl">1</span>, <span class="co"># single analysis at information-fraction of 1</span>
+                 upar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">alpha</span><span class="op">)</span>, <span class="co"># Final analysis bound</span>
+                 lpar <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span> <span class="co"># No futility bound</span>
+               <span class="op">)</span></pre></div>
 <p>There are three components to the resulting design.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">design</span>)
-<span class="co">#&gt; [1] "enrollRates" "failRates"   "bounds"</span></pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">design</span><span class="op">)</span>
+<span class="co">#&gt; [1] "enrollRates" "failRates"   "bounds"</span></pre></div>
 <p>First, the enrollment rates for each period have been increased proportionately to size the trial for the desired properties; the duration for each enrollment rate has not changed.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">design</span>$<span class="no">enrollRates</span>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="va">design</span><span class="op">$</span><span class="va">enrollRates</span>
 <span class="co">#&gt; # A tibble: 4 x 3</span>
 <span class="co">#&gt;   Stratum duration  rate</span>
 <span class="co">#&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 All            2  12.0</span>
 <span class="co">#&gt; 2 All            2  24.1</span>
 <span class="co">#&gt; 3 All            2  36.1</span>
-<span class="co">#&gt; 4 All            6  48.2</span></pre></body></html></div>
+<span class="co">#&gt; 4 All            6  48.2</span></pre></div>
 <p>The output <code>failRates</code> are the same as input. The output bounds are just an upper bound of <span class="math inline">\(\Phi^{-1}(1-\alpha)\)</span> and a lower bound of <span class="math inline">\(-\infty\)</span>. The targeted time of the single analysis is in the <code>Time</code> column. The average hazard ratio used to compute the sample size based on the <span class="citation">Schoenfeld (1981)</span> approximation is in <code>AHR</code>. The targeted events at the analysis is in the column <code>Events</code>. The targeted time of the analysis is in <code>Time</code>. The power is in the <code>Probability</code> column on the row with the <code>Upper</code> bound. The parameter <code>theta</code> is the natural parameter for the effect size as outlined in <span class="citation">Jennison and Turnbull (2000)</span> and elsewhere in this package; in this case it is <code>-log(AHR)</code>. The variables <code>info</code> and <code>info0</code> are statistical information at each analysis under the alternate and null hypothesis, respectively.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">design</span>$<span class="no">bounds</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw">digits</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="va">design</span><span class="op">$</span><span class="va">bounds</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">Analysis</th>
@@ -232,19 +239,21 @@
 </tr></tbody>
 </table>
 <p>We note that the targeted <code>Events</code> are approximately what would be proposed with the <span class="citation">Schoenfeld (1981)</span> formula:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="kw pkg">gsDesign</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/gsDesign/man/nSurvival.html">nEvents</a></span>(<span class="kw">hr</span><span class="kw">=</span><span class="no">design</span>$<span class="no">bounds</span>$<span class="no">AHR</span>)
-<span class="co">#&gt; [1] 313.535</span></pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu">gsDesign</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gsDesign/man/nSurvival.html">nEvents</a></span><span class="op">(</span>hr<span class="op">=</span><span class="va">design</span><span class="op">$</span><span class="va">bounds</span><span class="op">$</span><span class="va">AHR</span><span class="op">)</span>
+<span class="co">#&gt; [1] 313.535</span></pre></div>
 <p>The difference is that <code><a href="../reference/gs_design_ahr.html">gs_design_ahr()</a></code> accounts for both a null and alternate hypothesis variance estimate for <code>theta=log(AHR)</code> at each analysis to yield a slightly more conservative event target due to slower accumulation of statistical information under the alternate hypothesis. See <span class="citation">Lachin (2009)</span> for this approach for fixed design; to our knowledge, this has not previously been extended to group sequential design. Due to simplicity, there may be reasons to allow approaches with a single variance estimate in future releases.</p>
 <p>Finally, we note that with a shorter trial duration of 30 months, we need both a larger sample size and targeted number of events due to a larger expected AHR at the time of analysis:</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r">  <span class="fu"><a href="../reference/gs_design_ahr.html">gs_design_ahr</a></span>(<span class="kw">enrollRates</span> <span class="kw">=</span> <span class="no">enrollRates</span>,
-              <span class="kw">failRates</span> <span class="kw">=</span> <span class="no">failRates</span>,
-              <span class="kw">alpha</span> <span class="kw">=</span> <span class="no">alpha</span>,
-              <span class="kw">beta</span> <span class="kw">=</span> <span class="fl">.1</span>, <span class="co"># Type II error = 1 - power</span>
-              <span class="kw">analysisTimes</span> <span class="kw">=</span> <span class="fl">30</span>, <span class="co"># Planned trial duration</span>
-              <span class="kw">IF</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="co"># single analysis at information-fraction of 1</span>
-              <span class="kw">upar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span>(<span class="fl">1</span> - <span class="no">alpha</span>), <span class="co"># Final analysis bound</span>
-              <span class="kw">lpar</span> <span class="kw">=</span> -<span class="fl">Inf</span> <span class="co"># No futility bound</span>
-            )$<span class="no">bounds</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw">digits</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+  <span class="fu"><a href="../reference/gs_design_ahr.html">gs_design_ahr</a></span><span class="op">(</span>enrollRates <span class="op">=</span> <span class="va">enrollRates</span>,
+              failRates <span class="op">=</span> <span class="va">failRates</span>,
+              alpha <span class="op">=</span> <span class="va">alpha</span>,
+              beta <span class="op">=</span> <span class="fl">.1</span>, <span class="co"># Type II error = 1 - power</span>
+              analysisTimes <span class="op">=</span> <span class="fl">30</span>, <span class="co"># Planned trial duration</span>
+              IF <span class="op">=</span> <span class="fl">1</span>, <span class="co"># single analysis at information-fraction of 1</span>
+              upar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">alpha</span><span class="op">)</span>, <span class="co"># Final analysis bound</span>
+              lpar <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span> <span class="co"># No futility bound</span>
+            <span class="op">)</span><span class="op">$</span><span class="va">bounds</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">Analysis</th>
@@ -288,20 +297,23 @@
 <p><span class="math display">\[f(t) = 2-2\Phi\left(\frac{\Phi^{-1}(1-\alpha/2)}{t^{1/2}}\right).\]</span></p>
 <p><img src="QuickStart_files/figure-html/unnamed-chunk-10-1.png" width="624"></p>
 <p>Suppose <span class="math inline">\(K=3\)</span> and <span class="math inline">\(t_1=0.5\)</span>, <span class="math inline">\(t_2 = 0.75\)</span>, <span class="math inline">\(t_3 = 1\)</span>. We can define bounds with the <strong>gsDesign</strong> group sequential design function <code><a href="https://rdrr.io/pkg/gsDesign/man/gsDesign.html">gsDesign()</a></code> and Lan-DeMets O’Brien-Fleming spending function for <span class="math inline">\(\alpha = 0.025\)</span>.</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">b</span> <span class="kw">&lt;-</span> <span class="kw pkg">gsDesign</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/gsDesign/man/gsDesign.html">gsDesign</a></span>(<span class="kw">k</span><span class="kw">=</span><span class="fl">3</span>, <span class="kw">timing</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1</span>), <span class="kw">test.type</span><span class="kw">=</span><span class="fl">1</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.025</span>, <span class="kw">sfu</span> <span class="kw">=</span> <span class="kw pkg">gsDesign</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/gsDesign/man/sfLDOF.html">sfLDOF</a></span>)$<span class="no">upper</span>$<span class="no">bound</span>
-<span class="no">b</span>
-<span class="co">#&gt; [1] 2.962588 2.359018 2.014084</span></pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="va">b</span> <span class="op">&lt;-</span> <span class="fu">gsDesign</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gsDesign/man/gsDesign.html">gsDesign</a></span><span class="op">(</span>k<span class="op">=</span><span class="fl">3</span>, timing <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1</span><span class="op">)</span>, test.type<span class="op">=</span><span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.025</span>, sfu <span class="op">=</span> <span class="fu">gsDesign</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gsDesign/man/sfLDOF.html">sfLDOF</a></span><span class="op">)</span><span class="op">$</span><span class="va">upper</span><span class="op">$</span><span class="va">bound</span>
+<span class="va">b</span>
+<span class="co">#&gt; [1] 2.962588 2.359018 2.014084</span></pre></div>
 <p>Now we can define a one-sided group sequential design under the same enrollment, failure and dropout assumptions used previously.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">design1s</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/gs_design_ahr.html">gs_design_ahr</a></span>(<span class="kw">enrollRates</span> <span class="kw">=</span> <span class="no">enrollRates</span>,
-                          <span class="kw">failRates</span> <span class="kw">=</span> <span class="no">failRates</span>,
-                          <span class="kw">analysisTimes</span> <span class="kw">=</span> <span class="fl">36</span>, <span class="co"># Trial duration</span>
-                          <span class="kw">upper</span> <span class="kw">=</span> <span class="no">gs_spending_bound</span>,
-                          <span class="kw">upar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">sf</span> <span class="kw">=</span> <span class="kw pkg">gsDesign</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/gsDesign/man/sfLDOF.html">sfLDOF</a></span>, <span class="kw">total_spend</span> <span class="kw">=</span> <span class="fl">0.025</span>),
-                          <span class="kw">lpar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(-<span class="fl">Inf</span>, <span class="fl">3</span>), <span class="co"># No futility bound</span>
-                          <span class="kw">IF</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1</span>)
-                        )</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="va">design1s</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gs_design_ahr.html">gs_design_ahr</a></span><span class="op">(</span>enrollRates <span class="op">=</span> <span class="va">enrollRates</span>,
+                          failRates <span class="op">=</span> <span class="va">failRates</span>,
+                          analysisTimes <span class="op">=</span> <span class="fl">36</span>, <span class="co"># Trial duration</span>
+                          upper <span class="op">=</span> <span class="va">gs_spending_bound</span>,
+                          upar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sf <span class="op">=</span> <span class="fu">gsDesign</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gsDesign/man/sfLDOF.html">sfLDOF</a></span>, total_spend <span class="op">=</span> <span class="fl">0.025</span><span class="op">)</span>,
+                          lpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">3</span><span class="op">)</span>, <span class="co"># No futility bound</span>
+                          IF <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1</span><span class="op">)</span>
+                        <span class="op">)</span></pre></div>
 <p>Bounds at the 3 analyses are as follows; note that expected sample size at time of each data cutoff for analysis is also here in <code>N</code>. We filter on the upper bound so that lower bounds with <code>Z = -Inf</code> are not shown.</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">design1s</span>$<span class="no">bounds</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">Bound</span> <span class="kw">==</span> <span class="st">"Upper"</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw">digits</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="va">design1s</span><span class="op">$</span><span class="va">bounds</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Bound</span> <span class="op">==</span> <span class="st">"Upper"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">Analysis</th>
@@ -359,13 +371,14 @@
 </tbody>
 </table>
 <p>The boundary crossing probabilities column labelled <code>Probability</code> here are under the alternate hypothesis. These are cumulative probabilities totaling 0.9 at the final analysis, representing 90% power. If we wish to see the boundary probabilities under the null hypothesis, we can change the hazard ratio to 1 in the input <code>failRates</code>, use the output <code>enrollRates</code> from <code>designs</code> as follows.</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="../reference/gs_power_ahr.html">gs_power_ahr</a></span>(<span class="kw">enrollRates</span> <span class="kw">=</span> <span class="no">design1s</span>$<span class="no">enrollRates</span>,
-             <span class="kw">failRates</span> <span class="kw">=</span> <span class="no">design1s</span>$<span class="no">failRates</span> <span class="kw">%&gt;%</span> <span class="fu">mutate</span>(<span class="kw">hr</span> <span class="kw">=</span> <span class="fl">1</span>),
-             <span class="kw">upper</span> <span class="kw">=</span> <span class="no">gs_spending_bound</span>,
-             <span class="kw">upar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">sf</span> <span class="kw">=</span> <span class="kw pkg">gsDesign</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/gsDesign/man/sfLDOF.html">sfLDOF</a></span>, <span class="kw">total_spend</span> <span class="kw">=</span> <span class="fl">0.025</span>),
-             <span class="kw">lpar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(-<span class="fl">Inf</span>, <span class="fl">3</span>), <span class="co"># No futility bound</span>
-             <span class="kw">events</span> <span class="kw">=</span> <span class="no">design1s</span>$<span class="no">bound</span>$<span class="no">Events</span>[<span class="fl">1</span>:<span class="fl">3</span>]
-) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">Bound</span> <span class="kw">==</span> <span class="st">"Upper"</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw">digits</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="fu"><a href="../reference/gs_power_ahr.html">gs_power_ahr</a></span><span class="op">(</span>enrollRates <span class="op">=</span> <span class="va">design1s</span><span class="op">$</span><span class="va">enrollRates</span>,
+             failRates <span class="op">=</span> <span class="va">design1s</span><span class="op">$</span><span class="va">failRates</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>hr <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+             upper <span class="op">=</span> <span class="va">gs_spending_bound</span>,
+             upar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sf <span class="op">=</span> <span class="fu">gsDesign</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gsDesign/man/sfLDOF.html">sfLDOF</a></span>, total_spend <span class="op">=</span> <span class="fl">0.025</span><span class="op">)</span>,
+             lpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">3</span><span class="op">)</span>, <span class="co"># No futility bound</span>
+             events <span class="op">=</span> <span class="va">design1s</span><span class="op">$</span><span class="va">bound</span><span class="op">$</span><span class="va">Events</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>
+<span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Bound</span> <span class="op">==</span> <span class="st">"Upper"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">Analysis</th>
@@ -427,22 +440,25 @@
 <h3 class="hasAnchor">
 <a href="#symmetric-2-sided-bounds" class="anchor"></a>Symmetric 2-sided bounds</h3>
 <p>For a symmetric design, we can again define a bound using <code><a href="https://rdrr.io/pkg/gsDesign/man/gsDesign.html">gsDesign::gsDesign()</a></code>. For this example, the bound is identical to <code>b</code> above to the digits calculated.</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">b2</span> <span class="kw">&lt;-</span> <span class="kw pkg">gsDesign</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/gsDesign/man/gsDesign.html">gsDesign</a></span>(<span class="kw">test.type</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">sfu</span> <span class="kw">=</span> <span class="no">sfLDOF</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.025</span>, <span class="kw">timing</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1</span>))$<span class="no">upper</span>$<span class="no">bound</span>
-<span class="no">b2</span>
-<span class="co">#&gt; [1] 2.962588 2.359018 2.014084</span></pre></body></html></div>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="va">b2</span> <span class="op">&lt;-</span> <span class="fu">gsDesign</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gsDesign/man/gsDesign.html">gsDesign</a></span><span class="op">(</span>test.type <span class="op">=</span> <span class="fl">2</span>, sfu <span class="op">=</span> <span class="va">sfLDOF</span>, alpha <span class="op">=</span> <span class="fl">0.025</span>, timing <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">upper</span><span class="op">$</span><span class="va">bound</span>
+<span class="va">b2</span>
+<span class="co">#&gt; [1] 2.962588 2.359018 2.014084</span></pre></div>
 <p>Now we replicate with ’gs_design_ahr()`:</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">design2ss</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/gs_design_ahr.html">gs_design_ahr</a></span>(<span class="kw">enrollRates</span> <span class="kw">=</span> <span class="no">enrollRates</span>,
-                           <span class="kw">failRates</span> <span class="kw">=</span> <span class="no">failRates</span>,
-                           <span class="kw">analysisTimes</span> <span class="kw">=</span> <span class="fl">36</span>, <span class="co"># Trial duration</span>
-                           <span class="kw">IF</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1</span>), <span class="co"># Information fraction at analyses</span>
-                           <span class="kw">upper</span> <span class="kw">=</span> <span class="no">gs_spending_bound</span>,
-                           <span class="kw">upar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">sf</span> <span class="kw">=</span> <span class="kw pkg">gsDesign</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/gsDesign/man/sfLDOF.html">sfLDOF</a></span>, <span class="kw">total_spend</span> <span class="kw">=</span> <span class="fl">0.025</span>),
-                           <span class="kw">lower</span> <span class="kw">=</span> <span class="no">gs_spending_bound</span>,
-                           <span class="kw">lpar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">sf</span> <span class="kw">=</span> <span class="kw pkg">gsDesign</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/gsDesign/man/sfLDOF.html">sfLDOF</a></span>, <span class="kw">total_spend</span> <span class="kw">=</span> <span class="fl">0.025</span>),
-                           <span class="kw">h1_spending</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-                        )</pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="va">design2ss</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gs_design_ahr.html">gs_design_ahr</a></span><span class="op">(</span>enrollRates <span class="op">=</span> <span class="va">enrollRates</span>,
+                           failRates <span class="op">=</span> <span class="va">failRates</span>,
+                           analysisTimes <span class="op">=</span> <span class="fl">36</span>, <span class="co"># Trial duration</span>
+                           IF <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1</span><span class="op">)</span>, <span class="co"># Information fraction at analyses</span>
+                           upper <span class="op">=</span> <span class="va">gs_spending_bound</span>,
+                           upar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sf <span class="op">=</span> <span class="fu">gsDesign</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gsDesign/man/sfLDOF.html">sfLDOF</a></span>, total_spend <span class="op">=</span> <span class="fl">0.025</span><span class="op">)</span>,
+                           lower <span class="op">=</span> <span class="va">gs_spending_bound</span>,
+                           lpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sf <span class="op">=</span> <span class="fu">gsDesign</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gsDesign/man/sfLDOF.html">sfLDOF</a></span>, total_spend <span class="op">=</span> <span class="fl">0.025</span><span class="op">)</span>,
+                           h1_spending <span class="op">=</span> <span class="cn">FALSE</span>
+                        <span class="op">)</span></pre></div>
 <p>Design bounds are confirmed with:</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">design2ss</span>$<span class="no">bounds</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw">digits</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="va">design2ss</span><span class="op">$</span><span class="va">bounds</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">Analysis</th>
@@ -539,32 +555,36 @@
 </tbody>
 </table>
 <p>The bounds can be plotted easily:</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">design2ss</span>$<span class="no">bound</span>, <span class="fu">aes</span>(<span class="kw">x</span><span class="kw">=</span><span class="no">Events</span>, <span class="kw">y</span><span class="kw">=</span><span class="no">Z</span>, <span class="kw">group</span> <span class="kw">=</span> <span class="no">Bound</span>)) + <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="kw">linetype</span><span class="kw">=</span><span class="no">Bound</span>)) + <span class="fu">geom_point</span>() +
-  <span class="fu">ggtitle</span>(<span class="st">"2-sided symmetric bounds with O'Brien-Fleming-like spending"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">design2ss</span><span class="op">$</span><span class="va">bound</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">Events</span>, y<span class="op">=</span><span class="va">Z</span>, group <span class="op">=</span> <span class="va">Bound</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>linetype<span class="op">=</span><span class="va">Bound</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"2-sided symmetric bounds with O'Brien-Fleming-like spending"</span><span class="op">)</span></pre></div>
 <p><img src="QuickStart_files/figure-html/unnamed-chunk-18-1.png" width="624"></p>
 </div>
 <div id="asymmetric-2-sided-bounds" class="section level3">
 <h3 class="hasAnchor">
 <a href="#asymmetric-2-sided-bounds" class="anchor"></a>Asymmetric 2-sided bounds</h3>
 <p>Asymmetric 2-sided designs are more common than symmetric since the objectives of the two bounds tend to be different. There is often caution to analyze early for efficacy or to use other than a conservative bound; both of these principles have been used with the example designs so far. Stopping when there is a lack of benefit for experimental treatment over control or for an overt indication of an unfavorable trend generally might be examined early and bounds be less stringent. We will add an early futility analysis where if there is a nominal 1-sided p-value of 0.05 in the wrong direction (<span class="math inline">\(Z=\Phi^{-1}(0.05)\)</span> after 30% or 50% of events have accrued. This might be considered a <em>disaster check</em>. After this point in time, there may not be a perceived need for further futility analysis. For efficacy, we add an infinite bound at this first interim analysis.</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">b2sa</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">Inf</span>, <span class="no">b</span>) <span class="co"># Same efficacy bound as before</span>
-<span class="no">a2sa</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span>(<span class="fl">.05</span>), <span class="fl">2</span>), <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(-<span class="fl">Inf</span>, <span class="fl">2</span>)) <span class="co"># Single futility analysis bound</span>
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="va">b2sa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">Inf</span>, <span class="va">b</span><span class="op">)</span> <span class="co"># Same efficacy bound as before</span>
+<span class="va">a2sa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.05</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="co"># Single futility analysis bound</span>
 
-<span class="no">design2sa</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/gs_design_nph.html">gs_design_nph</a></span>(<span class="kw">enrollRates</span> <span class="kw">=</span> <span class="no">enrollRates</span>,
-                        <span class="kw">failRates</span> <span class="kw">=</span> <span class="no">failRates</span>,
-                        <span class="kw">analysisTimes</span> <span class="kw">=</span> <span class="fl">36</span>, <span class="co"># Trial duration</span>
-                        <span class="kw">upar</span> <span class="kw">=</span> <span class="no">b2sa</span>,
-                        <span class="kw">lpar</span> <span class="kw">=</span> <span class="no">a2sa</span>, <span class="co"># Asymmetric 2-sided bound</span>
-                        <span class="kw">IF</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">.3</span>, <span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1</span>)
-                        )</pre></body></html></div>
+<span class="va">design2sa</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gs_design_nph.html">gs_design_nph</a></span><span class="op">(</span>enrollRates <span class="op">=</span> <span class="va">enrollRates</span>,
+                        failRates <span class="op">=</span> <span class="va">failRates</span>,
+                        analysisTimes <span class="op">=</span> <span class="fl">36</span>, <span class="co"># Trial duration</span>
+                        upar <span class="op">=</span> <span class="va">b2sa</span>,
+                        lpar <span class="op">=</span> <span class="va">a2sa</span>, <span class="co"># Asymmetric 2-sided bound</span>
+                        IF <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.3</span>, <span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1</span><span class="op">)</span>
+                        <span class="op">)</span></pre></div>
 <p>We now have a slightly larger sample size to account for the possibility of an early futility stop.</p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="no">design2sa</span>$<span class="no">enrollRates</span> <span class="kw">%&gt;%</span> <span class="fu">summarise</span>(<span class="kw">N</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">rate</span> * <span class="no">duration</span>)))
+<div class="sourceCode" id="cb19"><pre class="downlit">
+<span class="va">design2sa</span><span class="op">$</span><span class="va">enrollRates</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>N <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">rate</span> <span class="op">*</span> <span class="va">duration</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 1</span>
 <span class="co">#&gt;       N</span>
 <span class="co">#&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1   459</span></pre></body></html></div>
+<span class="co">#&gt; 1   459</span></pre></div>
 <p>Bounds are now:</p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">design2sa</span>$<span class="no">bounds</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="no">Z</span>) <span class="kw">&lt;</span> <span class="fl">Inf</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw">digits</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb20"><pre class="downlit">
+<span class="va">design2sa</span><span class="op">$</span><span class="va">bounds</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span> <span class="op">&lt;</span> <span class="cn">Inf</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">Analysis</th>
@@ -648,15 +668,16 @@
 </tbody>
 </table>
 <p>We see that there does not need to be a (finite) stopping rule for each bound at each analysis. That is, there is a futility bound only at the first 2 analyses and an efficacy bound only for the last 3 analyses. We still have the targeted power. The efficacy bound has not changed from our first design. The reason for not changing it is to address regulator concerns that such bounds are not always stopped for. However, if the bound is obeyed, the Type I error can be seen to be slightly reduced as follows. This price is generally acceptable for regulatory acceptance and operational flexibility that is enabled by controlling Type I error even if the futility bound is not obeyed.</p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="no">events</span> <span class="kw">&lt;-</span> (<span class="no">design2sa</span>$<span class="no">bounds</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">Bound</span> <span class="kw">==</span> <span class="st">"Upper"</span>))$<span class="no">Events</span>
-<span class="fu"><a href="../reference/gs_power_nph.html">gs_power_nph</a></span>(<span class="kw">enrollRates</span> <span class="kw">=</span> <span class="no">design1s</span>$<span class="no">enrollRates</span>,
-           <span class="kw">failRates</span> <span class="kw">=</span> <span class="no">design2sa</span>$<span class="no">failRates</span> <span class="kw">%&gt;%</span> <span class="fu">mutate</span>(<span class="kw">hr</span> <span class="kw">=</span> <span class="fl">1</span>),
-           <span class="kw">upar</span> <span class="kw">=</span> <span class="no">b2sa</span>,
-           <span class="kw">lpar</span> <span class="kw">=</span> <span class="no">a2sa</span>,
-           <span class="kw">events</span> <span class="kw">=</span> <span class="no">events</span>,
-           <span class="kw">maxEvents</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">events</span>)) <span class="kw">%&gt;%</span>
+<div class="sourceCode" id="cb21"><pre class="downlit">
+<span class="va">events</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">design2sa</span><span class="op">$</span><span class="va">bounds</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Bound</span> <span class="op">==</span> <span class="st">"Upper"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">Events</span>
+<span class="fu"><a href="../reference/gs_power_nph.html">gs_power_nph</a></span><span class="op">(</span>enrollRates <span class="op">=</span> <span class="va">design1s</span><span class="op">$</span><span class="va">enrollRates</span>,
+           failRates <span class="op">=</span> <span class="va">design2sa</span><span class="op">$</span><span class="va">failRates</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>hr <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+           upar <span class="op">=</span> <span class="va">b2sa</span>,
+           lpar <span class="op">=</span> <span class="va">a2sa</span>,
+           events <span class="op">=</span> <span class="va">events</span>,
+           maxEvents <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">events</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
 <span class="co"># filter eliminates bounds that are infinite</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="no">Z</span>) <span class="kw">&lt;</span> <span class="fl">Inf</span>)  <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw">digits</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span>))</pre></body></html></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span> <span class="op">&lt;</span> <span class="cn">Inf</span><span class="op">)</span>  <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">Analysis</th>
@@ -740,66 +761,70 @@
 <h1 class="hasAnchor">
 <a href="#confirmation-by-simulation" class="anchor"></a>Confirmation by Simulation</h1>
 <p>We do a small simulation to approximate the boundary crossing probabilities just shown in the 2-sided asymmetric design <code>design2sa</code>. First, we generate test statistics for each analysis for a number of simulated trials.</p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">fr</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simtrial/man/simfix2simPWSurv.html">simfix2simPWSurv</a></span>(<span class="kw">failRates</span> <span class="kw">=</span> <span class="no">failRates</span>)
-<span class="no">nsim</span> <span class="kw">&lt;-</span> <span class="fl">200</span> <span class="co"># Number of trial simulations</span>
-<span class="no">simresult</span> <span class="kw">&lt;-</span> <span class="kw">NULL</span>
-<span class="no">N</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span>(<span class="no">design2sa</span>$<span class="no">enrollRates</span> <span class="kw">%&gt;%</span> <span class="fu">summarize</span>(<span class="kw">N</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">rate</span>/<span class="fl">2</span> * <span class="no">duration</span>)))*<span class="fl">2</span>
-<span class="no">K</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">design2sa</span>$<span class="no">bounds</span>$<span class="no">Analysis</span>)
-<span class="no">events</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">design2sa</span>$<span class="no">bounds</span>$<span class="no">Events</span>)))
+<div class="sourceCode" id="cb22"><pre class="downlit">
+<span class="va">fr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simtrial/man/simfix2simPWSurv.html">simfix2simPWSurv</a></span><span class="op">(</span>failRates <span class="op">=</span> <span class="va">failRates</span><span class="op">)</span>
+<span class="va">nsim</span> <span class="op">&lt;-</span> <span class="fl">200</span> <span class="co"># Number of trial simulations</span>
+<span class="va">simresult</span> <span class="op">&lt;-</span> <span class="cn">NULL</span>
+<span class="va">N</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="va">design2sa</span><span class="op">$</span><span class="va">enrollRates</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>N <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">rate</span><span class="op">/</span><span class="fl">2</span> <span class="op">*</span> <span class="va">duration</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">*</span><span class="fl">2</span>
+<span class="va">K</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">design2sa</span><span class="op">$</span><span class="va">bounds</span><span class="op">$</span><span class="va">Analysis</span><span class="op">)</span>
+<span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">design2sa</span><span class="op">$</span><span class="va">bounds</span><span class="op">$</span><span class="va">Events</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="no">nsim</span>){
-  <span class="no">sim</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simtrial/man/simPWSurv.html">simPWSurv</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="no">N</span>),
-                   <span class="kw">enrollRates</span> <span class="kw">=</span> <span class="no">design2sa</span>$<span class="no">enrollRates</span>,
-                   <span class="kw">failRates</span> <span class="kw">=</span> <span class="no">fr</span>$<span class="no">failRates</span>,
-                   <span class="kw">dropoutRates</span> <span class="kw">=</span> <span class="no">fr</span>$<span class="no">dropoutRates</span>
-                  )
-  <span class="kw">for</span>(<span class="no">k</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="no">K</span>){
-    <span class="no">Z</span> <span class="kw">&lt;-</span> <span class="no">sim</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/simtrial/man/cutDataAtCount.html">cutDataAtCount</a></span>(<span class="no">events</span>[<span class="no">k</span>]) <span class="kw">%&gt;%</span> <span class="co"># cut simulation for analysis at targeted events</span>
-         <span class="fu"><a href="https://rdrr.io/pkg/simtrial/man/tensurv.html">tensurv</a></span>(<span class="kw">txval</span> <span class="kw">=</span> <span class="st">"Experimental"</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/simtrial/man/tenFH.html">tenFH</a></span>(<span class="kw">rg</span> <span class="kw">=</span> <span class="fu">tibble</span>(<span class="kw">rho</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">gamma</span> <span class="kw">=</span> <span class="fl">0</span>))
-    <span class="no">simresult</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="no">simresult</span>,
-                       <span class="fu">tibble</span>(<span class="kw">sim</span> <span class="kw">=</span> <span class="no">i</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="no">k</span>, <span class="kw">Z</span> <span class="kw">=</span> -<span class="no">Z</span>$<span class="no">Z</span>)) <span class="co"># Change sign for Z</span>
-  }
-}</pre></body></html></div>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nsim</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simtrial/man/simPWSurv.html">simPWSurv</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>,
+                   enrollRates <span class="op">=</span> <span class="va">design2sa</span><span class="op">$</span><span class="va">enrollRates</span>,
+                   failRates <span class="op">=</span> <span class="va">fr</span><span class="op">$</span><span class="va">failRates</span>,
+                   dropoutRates <span class="op">=</span> <span class="va">fr</span><span class="op">$</span><span class="va">dropoutRates</span>
+                  <span class="op">)</span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">K</span><span class="op">)</span><span class="op">{</span>
+    <span class="va">Z</span> <span class="op">&lt;-</span> <span class="va">sim</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/simtrial/man/cutDataAtCount.html">cutDataAtCount</a></span><span class="op">(</span><span class="va">events</span><span class="op">[</span><span class="va">k</span><span class="op">]</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># cut simulation for analysis at targeted events</span>
+         <span class="fu"><a href="https://rdrr.io/pkg/simtrial/man/tensurv.html">tensurv</a></span><span class="op">(</span>txval <span class="op">=</span> <span class="st">"Experimental"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/simtrial/man/tenFH.html">tenFH</a></span><span class="op">(</span>rg <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>rho <span class="op">=</span> <span class="fl">0</span>, gamma <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span>
+    <span class="va">simresult</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">simresult</span>,
+                       <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>sim <span class="op">=</span> <span class="va">i</span>, k <span class="op">=</span> <span class="va">k</span>, Z <span class="op">=</span> <span class="op">-</span><span class="va">Z</span><span class="op">$</span><span class="va">Z</span><span class="op">)</span><span class="op">)</span> <span class="co"># Change sign for Z</span>
+  <span class="op">}</span>
+<span class="op">}</span></pre></div>
 <p>Now we analyze the individual trials and summarize results.</p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="no">bds</span> <span class="kw">&lt;-</span> <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span>(<span class="kw">k</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">design2sa</span>$<span class="no">bounds</span>$<span class="no">Analysis</span>)),
-            <span class="kw">upper</span> <span class="kw">=</span> (<span class="no">design2sa</span>$<span class="no">bounds</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">Bound</span> <span class="kw">==</span> <span class="st">"Upper"</span>))$<span class="no">Z</span>,
-            <span class="kw">lower</span> <span class="kw">=</span> (<span class="no">design2sa</span>$<span class="no">bounds</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">Bound</span> <span class="kw">==</span> <span class="st">"Lower"</span>))$<span class="no">Z</span>
-)
-<span class="no">trialsum</span> <span class="kw">&lt;-</span> <span class="no">simresult</span> <span class="kw">%&gt;%</span>
-            <span class="fu">full_join</span>(<span class="no">bds</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"k"</span>) <span class="kw">%&gt;%</span>
-            <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">Z</span> <span class="kw">&lt;</span> <span class="no">lower</span> <span class="kw">|</span> <span class="no">Z</span> <span class="kw">&gt;=</span> <span class="no">upper</span> <span class="kw">|</span> <span class="no">k</span> <span class="kw">==</span> <span class="no">K</span>) <span class="kw">%&gt;%</span>
-            <span class="fu">group_by</span>(<span class="no">sim</span>) <span class="kw">%&gt;%</span>
-            <span class="fu">slice</span>(<span class="fl">1</span>) <span class="kw">%&gt;%</span>
-            <span class="fu">ungroup</span>()
-<span class="no">trialsum</span> <span class="kw">%&gt;%</span> <span class="fu">summarize</span>(<span class="kw">nsim</span> <span class="kw">=</span> <span class="fu">n</span>(),
-                       <span class="st">"Early futility (%)"</span> <span class="kw">=</span> <span class="fl">100</span> * <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">Z</span> <span class="kw">&lt;</span> <span class="no">lower</span>),
-                       <span class="st">"Power (%)"</span> <span class="kw">=</span> <span class="fl">100</span> * <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">Z</span> <span class="kw">&gt;=</span> <span class="no">upper</span>))
+<div class="sourceCode" id="cb23"><pre class="downlit">
+<span class="va">bds</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">design2sa</span><span class="op">$</span><span class="va">bounds</span><span class="op">$</span><span class="va">Analysis</span><span class="op">)</span><span class="op">)</span>,
+            upper <span class="op">=</span> <span class="op">(</span><span class="va">design2sa</span><span class="op">$</span><span class="va">bounds</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Bound</span> <span class="op">==</span> <span class="st">"Upper"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">Z</span>,
+            lower <span class="op">=</span> <span class="op">(</span><span class="va">design2sa</span><span class="op">$</span><span class="va">bounds</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Bound</span> <span class="op">==</span> <span class="st">"Lower"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">Z</span>
+<span class="op">)</span>
+<span class="va">trialsum</span> <span class="op">&lt;-</span> <span class="va">simresult</span> <span class="op">%&gt;%</span> 
+            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">bds</span>, by <span class="op">=</span> <span class="st">"k"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Z</span> <span class="op">&lt;</span> <span class="va">lower</span> <span class="op">|</span> <span class="va">Z</span> <span class="op">&gt;=</span> <span class="va">upper</span> <span class="op">|</span> <span class="va">k</span> <span class="op">==</span> <span class="va">K</span><span class="op">)</span> <span class="op">%&gt;%</span>
+            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span> <span class="op">%&gt;%</span>
+            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">trialsum</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>nsim <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,
+                       <span class="st">"Early futility (%)"</span> <span class="op">=</span> <span class="fl">100</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Z</span> <span class="op">&lt;</span> <span class="va">lower</span><span class="op">)</span>,
+                       <span class="st">"Power (%)"</span> <span class="op">=</span> <span class="fl">100</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Z</span> <span class="op">&gt;=</span> <span class="va">upper</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 3</span>
 <span class="co">#&gt;    nsim `Early futility (%)` `Power (%)`</span>
 <span class="co">#&gt;   &lt;int&gt;                &lt;dbl&gt;       &lt;dbl&gt;</span>
-<span class="co">#&gt; 1   200                    1        91.5</span></pre></body></html></div>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="no">xx</span> <span class="kw">&lt;-</span> <span class="no">trialsum</span> <span class="kw">%&gt;%</span> <span class="fu">mutate</span>(<span class="kw">Positive</span> <span class="kw">=</span> (<span class="no">Z</span> <span class="kw">&gt;=</span> <span class="no">upper</span>))
-<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">xx</span>$<span class="no">k</span>, <span class="no">xx</span>$<span class="no">Positive</span>)
+<span class="co">#&gt; 1   200                    1          91</span></pre></div>
+<div class="sourceCode" id="cb24"><pre class="downlit">
+<span class="va">xx</span> <span class="op">&lt;-</span> <span class="va">trialsum</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Positive <span class="op">=</span> <span class="op">(</span><span class="va">Z</span> <span class="op">&gt;=</span> <span class="va">upper</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">xx</span><span class="op">$</span><span class="va">k</span>, <span class="va">xx</span><span class="op">$</span><span class="va">Positive</span><span class="op">)</span>
 <span class="co">#&gt;    </span>
 <span class="co">#&gt;     FALSE TRUE</span>
 <span class="co">#&gt;   1     2    0</span>
-<span class="co">#&gt;   2     0   15</span>
-<span class="co">#&gt;   3     0   91</span>
-<span class="co">#&gt;   4    15   77</span></pre></body></html></div>
+<span class="co">#&gt;   2     0   11</span>
+<span class="co">#&gt;   3     0  103</span>
+<span class="co">#&gt;   4    16   68</span></pre></div>
 </div>
 <div id="differences-from-gsdesign" class="section level1">
 <h1 class="hasAnchor">
 <a href="#differences-from-gsdesign" class="anchor"></a>Differences From <strong>gsDesign</strong>
 </h1>
 <p>The sample size computation from the <strong>gsdmvn</strong> package is slightly different than from the <strong>gsDesign</strong> package for proportional hazards model. We demonstrate this with the bounds for the 1-sided test above under a proportional hazards model with an underlying hazard ratio of 0.7.</p>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="no">design1sPH</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/gs_design_nph.html">gs_design_nph</a></span>(<span class="kw">enrollRates</span> <span class="kw">=</span> <span class="no">enrollRates</span>,
-                        <span class="kw">failRates</span> <span class="kw">=</span> <span class="no">failRates</span> <span class="kw">%&gt;%</span> <span class="fu">mutate</span>(<span class="kw">hr</span> <span class="kw">=</span> <span class="fl">.7</span>),
-                        <span class="kw">analysisTimes</span> <span class="kw">=</span> <span class="fl">36</span>, <span class="co"># Trial duration</span>
-                        <span class="kw">upar</span> <span class="kw">=</span> <span class="no">b</span>,
-                        <span class="kw">lpar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(-<span class="fl">Inf</span>, <span class="fl">3</span>), <span class="co"># No futility bound</span>
-                        <span class="kw">IF</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1</span>)
-                        )
-<span class="no">design1sPH</span>$<span class="no">enrollRates</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb25"><pre class="downlit">
+<span class="va">design1sPH</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gs_design_nph.html">gs_design_nph</a></span><span class="op">(</span>enrollRates <span class="op">=</span> <span class="va">enrollRates</span>,
+                        failRates <span class="op">=</span> <span class="va">failRates</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>hr <span class="op">=</span> <span class="fl">.7</span><span class="op">)</span>,
+                        analysisTimes <span class="op">=</span> <span class="fl">36</span>, <span class="co"># Trial duration</span>
+                        upar <span class="op">=</span> <span class="va">b</span>,
+                        lpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">3</span><span class="op">)</span>, <span class="co"># No futility bound</span>
+                        IF <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1</span><span class="op">)</span>
+                        <span class="op">)</span>
+<span class="va">design1sPH</span><span class="op">$</span><span class="va">enrollRates</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Stratum</th>
@@ -835,26 +860,28 @@
 </tbody>
 </table>
 <p>This results in total sample size:</p>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="no">design1sPH</span>$<span class="no">enrollRates</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="fl">1</span>) <span class="kw">%&gt;%</span> <span class="fu">select</span>(<span class="no">N</span>)
+<div class="sourceCode" id="cb26"><pre class="downlit">
+<span class="va">design1sPH</span><span class="op">$</span><span class="va">enrollRates</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 1</span>
 <span class="co">#&gt;       N</span>
 <span class="co">#&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1  460.</span></pre></body></html></div>
+<span class="co">#&gt; 1  460.</span></pre></div>
 <p>Now we derive a design with the same targeted properties using the <strong>gsDesign</strong> package.</p>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gsDesign/man/nSurv.html">gsSurv</a></span>(<span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>,
-            <span class="kw">test.type</span> <span class="kw">=</span> <span class="fl">1</span>,
-            <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">.025</span>,
-            <span class="kw">beta</span> <span class="kw">=</span> <span class="fl">.1</span>,
-            <span class="kw">timing</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1</span>),
-            <span class="kw">sfu</span> <span class="kw">=</span> <span class="no">sfLDOF</span>,
-            <span class="kw">lambda</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="fl">2</span>) / <span class="no">medianSurv</span>,
-            <span class="kw">hr</span> <span class="kw">=</span> <span class="fl">.7</span>,
-            <span class="kw">eta</span> <span class="kw">=</span> <span class="fl">.001</span>, <span class="co"># dropout rate</span>
-            <span class="kw">gamma</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">.25</span>, <span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1</span>),
-            <span class="kw">R</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">6</span>),
-            <span class="kw">minfup</span> <span class="kw">=</span> <span class="fl">24</span>,
-            <span class="kw">T</span> <span class="kw">=</span> <span class="fl">36</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/gsDesign/man/gsBoundSummary.html">gsBoundSummary</a></span>(<span class="no">x</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw">row.names</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb27"><pre class="downlit">
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gsDesign/man/nSurv.html">gsSurv</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">3</span>,
+            test.type <span class="op">=</span> <span class="fl">1</span>,
+            alpha <span class="op">=</span> <span class="fl">.025</span>,
+            beta <span class="op">=</span> <span class="fl">.1</span>,
+            timing <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1</span><span class="op">)</span>,
+            sfu <span class="op">=</span> <span class="va">sfLDOF</span>,
+            lambda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="va">medianSurv</span>,
+            hr <span class="op">=</span> <span class="fl">.7</span>, 
+            eta <span class="op">=</span> <span class="fl">.001</span>, <span class="co"># dropout rate</span>
+            gamma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.25</span>, <span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1</span><span class="op">)</span>,
+            R <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">6</span><span class="op">)</span>,
+            minfup <span class="op">=</span> <span class="fl">24</span>,
+            T <span class="op">=</span> <span class="fl">36</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/gsDesign/man/gsBoundSummary.html">gsBoundSummary</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Analysis</th>
@@ -940,7 +967,8 @@
 </tbody>
 </table>
 <p>Enrollment rates are:</p>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="no">x</span>$<span class="no">gamma</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb28"><pre class="downlit">
+<span class="va">x</span><span class="op">$</span><span class="va">gamma</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left"></th>
@@ -969,7 +997,7 @@
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
-<div id="refs" class="references">
+<div id="refs" class="references hanging-indent">
 <div id="ref-JTBook">
 <p>Jennison, Christopher, and Bruce W. Turnbull. 2000. <em>Group Sequential Methods with Applications to Clinical Trials</em>. Boca Raton, FL: Chapman; Hall/CRC.</p>
 </div>
@@ -997,11 +1025,11 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Keaven Anderson.</p>
+  <p>Developed by Anderson Keaven, Yilong Zhang, Shirazi Amin.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
