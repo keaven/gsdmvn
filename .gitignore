@@ -2,3 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+.Rprofile
+inst/doc
+man
+Meta
+docs
