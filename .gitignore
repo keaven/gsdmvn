@@ -3,7 +3,7 @@
 .RData
 .Ruserdata
 .Rprofile
-inst/doc
+inst
 man
 Meta
-docs
+
