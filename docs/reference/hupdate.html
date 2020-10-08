@@ -136,16 +136,16 @@
     <p>Update grid points for numerical integration from one analysis to the next</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hupdate</span>(
-  <span class='kw'>r</span> <span class='kw'>=</span> <span class='fl'>18</span>,
-  <span class='kw'>theta</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>I</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>a</span> <span class='kw'>=</span> -<span class='fl'>Inf</span>,
-  <span class='kw'>b</span> <span class='kw'>=</span> <span class='fl'>Inf</span>,
-  <span class='kw'>thetam1</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>Im1</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>gm1</span> <span class='kw'>=</span> <span class='fu'><a href='h1.html'>h1</a></span>()
-)</pre>
+    <pre class="usage"><span class='fu'>hupdate</span><span class='op'>(</span>
+  r <span class='op'>=</span> <span class='fl'>18</span>,
+  theta <span class='op'>=</span> <span class='fl'>0</span>,
+  I <span class='op'>=</span> <span class='fl'>2</span>,
+  a <span class='op'>=</span> <span class='op'>-</span><span class='cn'>Inf</span>,
+  b <span class='op'>=</span> <span class='cn'>Inf</span>,
+  thetam1 <span class='op'>=</span> <span class='fl'>0</span>,
+  Im1 <span class='op'>=</span> <span class='fl'>1</span>,
+  gm1 <span class='op'>=</span> <span class='fu'><a href='h1.html'>h1</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,10 +191,11 @@ and a normal density with mean <code>mu = theta * sqrt{I}</code> and variance 1 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># 2nd analysis with no interim bound and drift 0 should have mean 0, variance 1</span>
-<span class='fu'>hupdate</span>() <span class='kw'>%&gt;%</span> <span class='fu'>summarise</span>(<span class='kw'>mu</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>z</span> * <span class='no'>h</span>), <span class='kw'>var</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>((<span class='no'>z</span> - <span class='no'>mu</span>)^<span class='fl'>2</span> * <span class='no'>h</span>))</div><div class='output co'>#&gt; # A tibble: 1 x 2
+<span class='fu'>hupdate</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span>mu <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>z</span> <span class='op'>*</span> <span class='va'>h</span><span class='op'>)</span>, var <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='op'>(</span><span class='va'>z</span> <span class='op'>-</span> <span class='va'>mu</span><span class='op'>)</span><span class='op'>^</span><span class='fl'>2</span> <span class='op'>*</span> <span class='va'>h</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 2</span><span>
 #&gt;         mu   var
-#&gt;      &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1 4.83e-18  1.00</div></pre>
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> 4.83</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-18</span><span>  1.00</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -206,11 +207,11 @@ and a normal density with mean <code>mu = theta * sqrt{I}</code> and variance 1 
 
       <footer>
       <div class="copyright">
-  <p>Developed by Keaven Anderson.</p>
+  <p>Developed by Anderson Keaven, Yilong Zhang, Shirazi Amin.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

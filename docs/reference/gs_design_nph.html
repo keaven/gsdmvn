@@ -146,23 +146,23 @@ and enrollment pattern
 where the enrollment, failure and dropout rates changes over time.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gs_design_nph</span>(
-  <span class='kw'>enrollRates</span> <span class='kw'>=</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tibble/man/tibble.html'>tibble</a></span>(<span class='kw'>Stratum</span> <span class='kw'>=</span> <span class='st'>"All"</span>, <span class='kw'>duration</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>10</span>), <span class='kw'>rate</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>6</span>,
-    <span class='fl'>9</span>)),
-  <span class='kw'>failRates</span> <span class='kw'>=</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tibble/man/tibble.html'>tibble</a></span>(<span class='kw'>Stratum</span> <span class='kw'>=</span> <span class='st'>"All"</span>, <span class='kw'>duration</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>100</span>), <span class='kw'>failRate</span> <span class='kw'>=</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>2</span>)/<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>9</span>, <span class='fl'>18</span>), <span class='kw'>hr</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.9</span>, <span class='fl'>0.6</span>), <span class='kw'>dropoutRate</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>0.001</span>, <span class='fl'>2</span>)),
-  <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.025</span>,
-  <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>analysisTimes</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-  <span class='kw'>IF</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.25</span>, <span class='fl'>0.75</span>, <span class='fl'>1</span>),
-  <span class='kw'>upper</span> <span class='kw'>=</span> <span class='no'>gs_b</span>,
-  <span class='kw'>upar</span> <span class='kw'>=</span> <span class='kw pkg'>gsDesign</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/gsDesign/man/gsDesign.html'>gsDesign</a></span>(<span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>test.type</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>n.I</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.25</span>, <span class='fl'>0.75</span>, <span class='fl'>1</span>), <span class='kw'>maxn.IPlan</span> <span class='kw'>=</span>
-    <span class='fl'>1</span>, <span class='kw'>sfu</span> <span class='kw'>=</span> <span class='no'>sfLDOF</span>, <span class='kw'>sfupar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)$<span class='no'>upper</span>$<span class='no'>bound</span>,
-  <span class='kw'>lower</span> <span class='kw'>=</span> <span class='no'>gs_b</span>,
-  <span class='kw'>lpar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span>(<span class='fl'>0.1</span>), <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(-<span class='fl'>Inf</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>IF</span>) - <span class='fl'>1</span>)),
-  <span class='kw'>r</span> <span class='kw'>=</span> <span class='fl'>18</span>
-)</pre>
+    <pre class="usage"><span class='fu'>gs_design_nph</span><span class='op'>(</span>
+  enrollRates <span class='op'>=</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>Stratum <span class='op'>=</span> <span class='st'>"All"</span>, duration <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>10</span><span class='op'>)</span>, rate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>6</span>,
+    <span class='fl'>9</span><span class='op'>)</span><span class='op'>)</span>,
+  failRates <span class='op'>=</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>Stratum <span class='op'>=</span> <span class='st'>"All"</span>, duration <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>100</span><span class='op'>)</span>, failRate <span class='op'>=</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>9</span>, <span class='fl'>18</span><span class='op'>)</span>, hr <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.9</span>, <span class='fl'>0.6</span><span class='op'>)</span>, dropoutRate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0.001</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>,
+  ratio <span class='op'>=</span> <span class='fl'>1</span>,
+  alpha <span class='op'>=</span> <span class='fl'>0.025</span>,
+  beta <span class='op'>=</span> <span class='fl'>0.1</span>,
+  analysisTimes <span class='op'>=</span> <span class='fl'>30</span>,
+  IF <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.25</span>, <span class='fl'>0.75</span>, <span class='fl'>1</span><span class='op'>)</span>,
+  upper <span class='op'>=</span> <span class='va'>gs_b</span>,
+  upar <span class='op'>=</span> <span class='fu'>gsDesign</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/gsDesign/man/gsDesign.html'>gsDesign</a></span><span class='op'>(</span>k <span class='op'>=</span> <span class='fl'>3</span>, test.type <span class='op'>=</span> <span class='fl'>1</span>, n.I <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.25</span>, <span class='fl'>0.75</span>, <span class='fl'>1</span><span class='op'>)</span>, maxn.IPlan <span class='op'>=</span>
+    <span class='fl'>1</span>, sfu <span class='op'>=</span> <span class='va'>sfLDOF</span>, sfupar <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span><span class='op'>$</span><span class='va'>upper</span><span class='op'>$</span><span class='va'>bound</span>,
+  lower <span class='op'>=</span> <span class='va'>gs_b</span>,
+  lpar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='fl'>0.1</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='op'>-</span><span class='cn'>Inf</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>IF</span><span class='op'>)</span> <span class='op'>-</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>,
+  r <span class='op'>=</span> <span class='fl'>18</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -234,61 +234,64 @@ cumulative enrollment at end of each enrollment rate period,
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Design</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>gs_design_nph</span>()
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>gs_design_nph</span><span class='op'>(</span><span class='op'>)</span>
 <span class='co'># Notice cumulative power is 0.9 (90%)</span>
-<span class='no'>x</span></div><div class='output co'>#&gt; $enrollRates
-#&gt; # A tibble: 3 x 4
+<span class='va'>x</span>
+</div><div class='output co'>#&gt; $enrollRates
+#&gt; <span style='color: #555555;'># A tibble: 3 x 4</span><span>
 #&gt;   Stratum duration  rate     N
-#&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1 All            2  17.7  35.3
-#&gt; 2 All            2  35.3 106. 
-#&gt; 3 All           10  53.0 636. 
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> All            2  17.7  35.3
+#&gt; </span><span style='color: #555555;'>2</span><span> All            2  35.3 106. 
+#&gt; </span><span style='color: #555555;'>3</span><span> All           10  53.0 636. 
 #&gt; 
 #&gt; $failRates
-#&gt; # A tibble: 2 x 5
+#&gt; </span><span style='color: #555555;'># A tibble: 2 x 5</span><span>
 #&gt;   Stratum duration failRate    hr dropoutRate
-#&gt;   &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;
-#&gt; 1 All            3   0.0770   0.9       0.001
-#&gt; 2 All          100   0.0385   0.6       0.001
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> All            3   0.077</span><span style='text-decoration: underline;'>0</span><span>   0.9       0.001
+#&gt; </span><span style='color: #555555;'>2</span><span> All          100   0.038</span><span style='text-decoration: underline;'>5</span><span>   0.6       0.001
 #&gt; 
 #&gt; $bounds
-#&gt; # A tibble: 6 x 11
+#&gt; </span><span style='color: #555555;'># A tibble: 6 x 11</span><span>
 #&gt;   Analysis Bound       Z Probability theta  info  Time   AHR Events info0     N
-#&gt;      &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1        1 Upper    4.33    0.000257 0.186  21.3  10.1 0.830   86.2  21.5  427.
-#&gt; 2        2 Upper    2.34    0.563    0.314  63.2  21.1 0.730  258.   64.6  636.
-#&gt; 3        3 Upper    2.01    0.900    0.364  84.4  30.0 0.695  345.   86.2  636.
-#&gt; 4        1 Lower   -1.28    0.0161   0.186  21.3  10.1 0.830   86.2  21.5  427.
-#&gt; 5        2 Lower -Inf       0.0161   0.314  63.2  21.1 0.730  258.   64.6  636.
-#&gt; 6        3 Lower -Inf       0.0161   0.364  84.4  30.0 0.695  345.   86.2  636.
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 Upper    4.33    0.000</span><span style='text-decoration: underline;'>257</span><span> 0.186  21.3  10.1 0.830   86.2  21.5  427.
+#&gt; </span><span style='color: #555555;'>2</span><span>        2 Upper    2.34    0.563    0.314  63.2  21.1 0.730  258.   64.6  636.
+#&gt; </span><span style='color: #555555;'>3</span><span>        3 Upper    2.01    0.900    0.364  84.4  30.0 0.695  345.   86.2  636.
+#&gt; </span><span style='color: #555555;'>4</span><span>        1 Lower   -</span><span style='color: #BB0000;'>1.28</span><span>    0.016</span><span style='text-decoration: underline;'>1</span><span>   0.186  21.3  10.1 0.830   86.2  21.5  427.
+#&gt; </span><span style='color: #555555;'>5</span><span>        2 Lower -</span><span style='color: #BB0000;'>Inf</span><span>       0.016</span><span style='text-decoration: underline;'>1</span><span>   0.314  63.2  21.1 0.730  258.   64.6  636.
+#&gt; </span><span style='color: #555555;'>6</span><span>        3 Lower -</span><span style='color: #BB0000;'>Inf</span><span>       0.016</span><span style='text-decoration: underline;'>1</span><span>   0.364  84.4  30.0 0.695  345.   86.2  636.
 #&gt; </div><div class='input'><span class='co'># Check Type I error, non-binding; should be .025 (2.5%)</span>
-<span class='fu'><a href='gs_power_nph.html'>gs_power_nph</a></span>(<span class='kw'>enrollRates</span> <span class='kw'>=</span> <span class='no'>x</span>$<span class='no'>enrollRates</span>,
-           <span class='kw'>failRates</span> <span class='kw'>=</span> <span class='no'>x</span>$<span class='no'>failRates</span> <span class='kw'>%&gt;%</span> <span class='fu'>mutate</span>(<span class='kw'>hr</span> <span class='kw'>=</span> <span class='fl'>1</span>),
-           <span class='kw'>events</span> <span class='kw'>=</span> (<span class='no'>x</span>$<span class='no'>bounds</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(<span class='no'>Bound</span> <span class='kw'>==</span> <span class='st'>"Upper"</span>))$<span class='no'>Events</span>,
-           <span class='kw'>upar</span> <span class='kw'>=</span> (<span class='no'>x</span>$<span class='no'>bounds</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(<span class='no'>Bound</span> <span class='kw'>==</span> <span class='st'>"Upper"</span>))$<span class='no'>Z</span>,
-           <span class='kw'>lpar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(-<span class='fl'>Inf</span>,<span class='fl'>3</span>),
-           <span class='kw'>upper</span> <span class='kw'>=</span> <span class='no'>gs_b</span>,
-           <span class='kw'>lower</span> <span class='kw'>=</span> <span class='no'>gs_b</span>
-           ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>(<span class='no'>Z</span>) <span class='kw'>&lt;</span> <span class='fl'>Inf</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 10
+<span class='fu'><a href='gs_power_nph.html'>gs_power_nph</a></span><span class='op'>(</span>enrollRates <span class='op'>=</span> <span class='va'>x</span><span class='op'>$</span><span class='va'>enrollRates</span>,
+           failRates <span class='op'>=</span> <span class='va'>x</span><span class='op'>$</span><span class='va'>failRates</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>hr <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
+           events <span class='op'>=</span> <span class='op'>(</span><span class='va'>x</span><span class='op'>$</span><span class='va'>bounds</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Bound</span> <span class='op'>==</span> <span class='st'>"Upper"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>$</span><span class='va'>Events</span>,
+           upar <span class='op'>=</span> <span class='op'>(</span><span class='va'>x</span><span class='op'>$</span><span class='va'>bounds</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Bound</span> <span class='op'>==</span> <span class='st'>"Upper"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>$</span><span class='va'>Z</span>,
+           lpar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='op'>-</span><span class='cn'>Inf</span>,<span class='fl'>3</span><span class='op'>)</span>,
+           upper <span class='op'>=</span> <span class='va'>gs_b</span>,
+           lower <span class='op'>=</span> <span class='va'>gs_b</span>
+           <span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='va'>Z</span><span class='op'>)</span> <span class='op'>&lt;</span> <span class='cn'>Inf</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 10</span><span>
 #&gt;   Analysis Bound     Z Probability  Time Events   AHR theta  info info0
-#&gt;      &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1        1 Upper  4.33  0.00000737  9.66   86.2     1     0  21.5  21.5
-#&gt; 2        2 Upper  2.34  0.00965    18.8   258.      1     0  64.6  64.6
-#&gt; 3        3 Upper  2.01  0.0250     25.6   345.      1     0  86.2  86.2</div><div class='input'><span class='co'># Power under proportional hazards, HR = 0.75</span>
-<span class='fu'><a href='gs_power_nph.html'>gs_power_nph</a></span>(<span class='kw'>enrollRates</span> <span class='kw'>=</span> <span class='no'>x</span>$<span class='no'>enrollRates</span>,
-           <span class='kw'>failRates</span> <span class='kw'>=</span> <span class='no'>x</span>$<span class='no'>failRates</span> <span class='kw'>%&gt;%</span> <span class='fu'>mutate</span>(<span class='kw'>hr</span> <span class='kw'>=</span> <span class='fl'>.75</span>),
-           <span class='kw'>events</span> <span class='kw'>=</span> (<span class='no'>x</span>$<span class='no'>bounds</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(<span class='no'>Bound</span> <span class='kw'>==</span> <span class='st'>"Upper"</span>))$<span class='no'>Events</span>,
-           <span class='kw'>upar</span> <span class='kw'>=</span> (<span class='no'>x</span>$<span class='no'>bounds</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(<span class='no'>Bound</span> <span class='kw'>==</span> <span class='st'>"Upper"</span>))$<span class='no'>Z</span>,
-           <span class='kw'>lpar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(-<span class='fl'>Inf</span>,<span class='fl'>3</span>),
-           <span class='kw'>upper</span> <span class='kw'>=</span> <span class='no'>gs_b</span>,
-           <span class='kw'>lower</span> <span class='kw'>=</span> <span class='no'>gs_b</span>
-           ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>(<span class='no'>Z</span>) <span class='kw'>&lt;</span> <span class='fl'>Inf</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 10
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 Upper  4.33  0.000</span><span style='text-decoration: underline;'>007</span><span>37  9.66   86.2     1     0  21.5  21.5
+#&gt; </span><span style='color: #555555;'>2</span><span>        2 Upper  2.34  0.009</span><span style='text-decoration: underline;'>65</span><span>    18.8   258.      1     0  64.6  64.6
+#&gt; </span><span style='color: #555555;'>3</span><span>        3 Upper  2.01  0.025</span><span style='text-decoration: underline;'>0</span><span>     25.6   345.      1     0  86.2  86.2</div><div class='input'><span class='co'># Power under proportional hazards, HR = 0.75</span>
+<span class='fu'><a href='gs_power_nph.html'>gs_power_nph</a></span><span class='op'>(</span>enrollRates <span class='op'>=</span> <span class='va'>x</span><span class='op'>$</span><span class='va'>enrollRates</span>,
+           failRates <span class='op'>=</span> <span class='va'>x</span><span class='op'>$</span><span class='va'>failRates</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>hr <span class='op'>=</span> <span class='fl'>.75</span><span class='op'>)</span>,
+           events <span class='op'>=</span> <span class='op'>(</span><span class='va'>x</span><span class='op'>$</span><span class='va'>bounds</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Bound</span> <span class='op'>==</span> <span class='st'>"Upper"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>$</span><span class='va'>Events</span>,
+           upar <span class='op'>=</span> <span class='op'>(</span><span class='va'>x</span><span class='op'>$</span><span class='va'>bounds</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Bound</span> <span class='op'>==</span> <span class='st'>"Upper"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>$</span><span class='va'>Z</span>,
+           lpar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='op'>-</span><span class='cn'>Inf</span>,<span class='fl'>3</span><span class='op'>)</span>,
+           upper <span class='op'>=</span> <span class='va'>gs_b</span>,
+           lower <span class='op'>=</span> <span class='va'>gs_b</span>
+           <span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='va'>Z</span><span class='op'>)</span> <span class='op'>&lt;</span> <span class='cn'>Inf</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 10</span><span>
 #&gt;   Analysis Bound     Z Probability  Time Events   AHR theta  info info0
-#&gt;      &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1        1 Upper  4.33     0.00132  10.2   86.2  0.75 0.288  21.2  21.5
-#&gt; 2        2 Upper  2.34     0.484    20.8  258.   0.75 0.288  63.8  64.6
-#&gt; 3        3 Upper  2.01     0.750    28.7  345.   0.75 0.288  85.3  86.2</div><div class='input'>
-</div></pre>
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 Upper  4.33     0.001</span><span style='text-decoration: underline;'>32</span><span>  10.2   86.2  0.75 0.288  21.2  21.5
+#&gt; </span><span style='color: #555555;'>2</span><span>        2 Upper  2.34     0.484    20.8  258.   0.75 0.288  63.8  64.6
+#&gt; </span><span style='color: #555555;'>3</span><span>        3 Upper  2.01     0.750    28.7  345.   0.75 0.288  85.3  86.2</div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -300,11 +303,11 @@ cumulative enrollment at end of each enrollment rate period,
 
       <footer>
       <div class="copyright">
-  <p>Developed by Keaven Anderson.</p>
+  <p>Developed by Anderson Keaven, Yilong Zhang, Shirazi Amin.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

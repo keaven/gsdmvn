@@ -136,22 +136,22 @@
     <p>Group sequential design power under non-proportional hazards</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gs_power_nph</span>(
-  <span class='kw'>enrollRates</span> <span class='kw'>=</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tibble/man/tibble.html'>tibble</a></span>(<span class='kw'>Stratum</span> <span class='kw'>=</span> <span class='st'>"All"</span>, <span class='kw'>duration</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>10</span>), <span class='kw'>rate</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>6</span>,
-    <span class='fl'>9</span>)),
-  <span class='kw'>failRates</span> <span class='kw'>=</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tibble/man/tibble.html'>tibble</a></span>(<span class='kw'>Stratum</span> <span class='kw'>=</span> <span class='st'>"All"</span>, <span class='kw'>duration</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>100</span>), <span class='kw'>failRate</span> <span class='kw'>=</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>2</span>)/<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>9</span>, <span class='fl'>18</span>), <span class='kw'>hr</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.9</span>, <span class='fl'>0.6</span>), <span class='kw'>dropoutRate</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>0.001</span>, <span class='fl'>2</span>)),
-  <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>events</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>30</span>, <span class='fl'>40</span>, <span class='fl'>50</span>),
-  <span class='kw'>analysisTimes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>maxEvents</span> <span class='kw'>=</span> <span class='fl'>45</span>,
-  <span class='kw'>upper</span> <span class='kw'>=</span> <span class='no'>gs_b</span>,
-  <span class='kw'>upar</span> <span class='kw'>=</span> <span class='fu'>gsDesign</span>(<span class='kw'>k</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>events</span>), <span class='kw'>test.type</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>n.I</span> <span class='kw'>=</span> <span class='no'>events</span>, <span class='kw'>maxn.IPlan</span> <span class='kw'>=</span>
-    <span class='no'>maxEvents</span>, <span class='kw'>sfu</span> <span class='kw'>=</span> <span class='no'>sfLDOF</span>, <span class='kw'>sfupar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)$<span class='no'>upper</span>$<span class='no'>bound</span>,
-  <span class='kw'>lower</span> <span class='kw'>=</span> <span class='no'>gs_b</span>,
-  <span class='kw'>lpar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span>(<span class='fl'>0.1</span>), <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(-<span class='fl'>Inf</span>, <span class='fl'>2</span>)),
-  <span class='kw'>r</span> <span class='kw'>=</span> <span class='fl'>18</span>
-)</pre>
+    <pre class="usage"><span class='fu'>gs_power_nph</span><span class='op'>(</span>
+  enrollRates <span class='op'>=</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>Stratum <span class='op'>=</span> <span class='st'>"All"</span>, duration <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>10</span><span class='op'>)</span>, rate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>6</span>,
+    <span class='fl'>9</span><span class='op'>)</span><span class='op'>)</span>,
+  failRates <span class='op'>=</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>Stratum <span class='op'>=</span> <span class='st'>"All"</span>, duration <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>100</span><span class='op'>)</span>, failRate <span class='op'>=</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>9</span>, <span class='fl'>18</span><span class='op'>)</span>, hr <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.9</span>, <span class='fl'>0.6</span><span class='op'>)</span>, dropoutRate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0.001</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>,
+  ratio <span class='op'>=</span> <span class='fl'>1</span>,
+  events <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>30</span>, <span class='fl'>40</span>, <span class='fl'>50</span><span class='op'>)</span>,
+  analysisTimes <span class='op'>=</span> <span class='cn'>NULL</span>,
+  maxEvents <span class='op'>=</span> <span class='fl'>45</span>,
+  upper <span class='op'>=</span> <span class='va'>gs_b</span>,
+  upar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/gsDesign/man/gsDesign.html'>gsDesign</a></span><span class='op'>(</span>k <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>events</span><span class='op'>)</span>, test.type <span class='op'>=</span> <span class='fl'>1</span>, n.I <span class='op'>=</span> <span class='va'>events</span>, maxn.IPlan <span class='op'>=</span>
+    <span class='va'>maxEvents</span>, sfu <span class='op'>=</span> <span class='va'>sfLDOF</span>, sfupar <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span><span class='op'>$</span><span class='va'>upper</span><span class='op'>$</span><span class='va'>bound</span>,
+  lower <span class='op'>=</span> <span class='va'>gs_b</span>,
+  lpar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='fl'>0.1</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='op'>-</span><span class='cn'>Inf</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>,
+  r <span class='op'>=</span> <span class='fl'>18</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -210,15 +210,16 @@
     <p>Need to be added</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>gsDesign</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>gsDesign2</span>)
-<span class='fu'>gs_power_nph</span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>(<span class='no'>Z</span>) <span class='kw'>&lt;</span> <span class='fl'>Inf</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 10
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>gsDesign</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>gsDesign2</span><span class='op'>)</span>
+<span class='fu'>gs_power_nph</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='va'>Z</span><span class='op'>)</span> <span class='op'>&lt;</span> <span class='cn'>Inf</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 10</span><span>
 #&gt;   Analysis Bound     Z Probability  Time Events   AHR theta  info info0
-#&gt;      &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1        1 Upper  2.51      0.0316  14.9   30.0 0.787 0.240  7.37  7.50
-#&gt; 2        2 Upper  2.15      0.113   19.2   40.0 0.744 0.295  9.79 10.0 
-#&gt; 3        3 Upper  2.12      0.192   24.5   50.0 0.713 0.339 12.2  12.5 
-#&gt; 4        1 Lower -1.28      0.0266  14.9   30.0 0.787 0.240  7.37  7.50</div></pre>
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 Upper  2.51      0.031</span><span style='text-decoration: underline;'>6</span><span>  14.9   30.0 0.787 0.240  7.37  7.50
+#&gt; </span><span style='color: #555555;'>2</span><span>        2 Upper  2.15      0.113   19.2   40.0 0.744 0.295  9.79 10.0 
+#&gt; </span><span style='color: #555555;'>3</span><span>        3 Upper  2.12      0.192   24.5   50.0 0.713 0.339 12.2  12.5 
+#&gt; </span><span style='color: #555555;'>4</span><span>        1 Lower -</span><span style='color: #BB0000;'>1.28</span><span>      0.026</span><span style='text-decoration: underline;'>6</span><span>  14.9   30.0 0.787 0.240  7.37  7.50</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -230,11 +231,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Keaven Anderson.</p>
+  <p>Developed by Anderson Keaven, Yilong Zhang, Shirazi Amin.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

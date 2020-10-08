@@ -142,13 +142,13 @@ This function is intended for use in computing futility bounds based on spending
 the input hazard ratio (hr) values for intervals specified here.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ahr_blinded</span>(
-  <span class='kw'>Srv</span> <span class='kw'>=</span> <span class='fu'>Surv</span>(<span class='kw'>time</span> <span class='kw'>=</span> <span class='kw pkg'>simtrial</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/simtrial/man/Ex1delayedEffect.html'>Ex1delayedEffect</a></span>$<span class='no'>month</span>, <span class='kw'>event</span> <span class='kw'>=</span>
-    <span class='kw pkg'>simtrial</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/simtrial/man/Ex1delayedEffect.html'>Ex1delayedEffect</a></span>$<span class='no'>evntd</span>),
-  <span class='kw'>intervals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/array.html'>array</a></span>(<span class='fl'>3</span>, <span class='fl'>3</span>),
-  <span class='kw'>hr</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0.6</span>),
-  <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='fl'>1</span>
-)</pre>
+    <pre class="usage"><span class='fu'>ahr_blinded</span><span class='op'>(</span>
+  Srv <span class='op'>=</span> <span class='fu'>Surv</span><span class='op'>(</span>time <span class='op'>=</span> <span class='fu'>simtrial</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/simtrial/man/Ex1delayedEffect.html'>Ex1delayedEffect</a></span><span class='op'>$</span><span class='va'>month</span>, event <span class='op'>=</span>
+    <span class='fu'>simtrial</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/simtrial/man/Ex1delayedEffect.html'>Ex1delayedEffect</a></span><span class='op'>$</span><span class='va'>evntd</span><span class='op'>)</span>,
+  intervals <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/array.html'>array</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>3</span><span class='op'>)</span>,
+  hr <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0.6</span><span class='op'>)</span>,
+  ratio <span class='op'>=</span> <span class='fl'>1</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -185,17 +185,18 @@ if `simple=FALSE`, `Stratum` and `t` (beginning of each constant HR period) are 
 and `HR` is returned instead of `AHR`</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>simtrial</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>survival</span>)
-<span class='fu'>ahr_blinded</span>(<span class='kw'>Srv</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span>(<span class='kw'>time</span> <span class='kw'>=</span> <span class='kw pkg'>simtrial</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/simtrial/man/Ex2delayedEffect.html'>Ex2delayedEffect</a></span>$<span class='no'>month</span>,
-                       <span class='kw'>event</span> <span class='kw'>=</span> <span class='kw pkg'>simtrial</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/simtrial/man/Ex2delayedEffect.html'>Ex2delayedEffect</a></span>$<span class='no'>evntd</span>),
-            <span class='kw'>intervals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>,<span class='fl'>100</span>),
-            <span class='kw'>hr</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>.55</span>),
-            <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 4
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>simtrial</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/therneau/survival'>survival</a></span><span class='op'>)</span>
+<span class='fu'>ahr_blinded</span><span class='op'>(</span>Srv <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span><span class='op'>(</span>time <span class='op'>=</span> <span class='fu'>simtrial</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/simtrial/man/Ex2delayedEffect.html'>Ex2delayedEffect</a></span><span class='op'>$</span><span class='va'>month</span>,
+                       event <span class='op'>=</span> <span class='fu'>simtrial</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/simtrial/man/Ex2delayedEffect.html'>Ex2delayedEffect</a></span><span class='op'>$</span><span class='va'>evntd</span><span class='op'>)</span>,
+            intervals <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>,<span class='fl'>100</span><span class='op'>)</span>,
+            hr <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>.55</span><span class='op'>)</span>,
+            ratio <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 4</span><span>
 #&gt;   Events   AHR  theta info0
-#&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1    228 0.826 -0.191    57</div><div class='input'>
-</div></pre>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>    228 0.826 -</span><span style='color: #BB0000;'>0.191</span><span>    57</div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -207,11 +208,11 @@ and `HR` is returned instead of `AHR`</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Keaven Anderson.</p>
+  <p>Developed by Anderson Keaven, Yilong Zhang, Shirazi Amin.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
