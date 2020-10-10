@@ -31,7 +31,7 @@
 #'             ratio = 1)
 #'
 #' @export
-ahr_blinded <- function (Srv = Surv(time = simtrial::Ex1delayedEffect$month,
+ahr_blinded <- function (Srv = survival::Surv(time = simtrial::Ex1delayedEffect$month,
                                     event = simtrial::Ex1delayedEffect$evntd),
                          intervals = array(3, 3),
                          hr = c(1,.6),

@@ -93,11 +93,11 @@ gs_design_ahr <- function(enrollRates=tibble::tibble(Stratum="All",
     ################################################################################
     # Check input values
     msg <- "analysisTimes must be a positive number or positive increasing sequence"
-    if (!is.vector(analysisTimes,mod="numeric")) stop(msg)
+    if (!is.vector(analysisTimes,mode="numeric")) stop(msg)
     if (min(analysisTimes - dplyr::lag(analysisTimes, def=0))<=0) stop(msg)
     msg <- "IF must be a positive number or positive increasing sequence on (0, 1] with final value of 1"
     if (is.null(IF)){IF <- 1}
-    if (!is.vector(IF,mod="numeric")) stop(msg)
+    if (!is.vector(IF,mode="numeric")) stop(msg)
     if (min(IF - dplyr::lag(IF, def=0))<=0) stop(msg)
     if (max(IF) != 1) stop(msg)
     msg <- "IF and analysisTimes must have the same length if both have length > 1"
