@@ -85,7 +85,7 @@ where the enrollment, failure and dropout rates changes over time." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -238,30 +238,30 @@ cumulative enrollment at end of each enrollment rate period,
 <span class='co'># Notice cumulative power is 0.9 (90%)</span>
 <span class='va'>x</span>
 </div><div class='output co'>#&gt; $enrollRates
-#&gt; <span style='color: #555555;'># A tibble: 3 x 4</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 3 x 4</span><span>
 #&gt;   Stratum duration  rate     N
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> All            2  17.7  35.3
-#&gt; </span><span style='color: #555555;'>2</span><span> All            2  35.3 106. 
-#&gt; </span><span style='color: #555555;'>3</span><span> All           10  53.0 636. 
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> All            2  17.7  35.3
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> All            2  35.3 106. 
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> All           10  53.0 636. 
 #&gt; 
 #&gt; $failRates
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 5</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 2 x 5</span><span>
 #&gt;   Stratum duration failRate    hr dropoutRate
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> All            3   0.077</span><span style='text-decoration: underline;'>0</span><span>   0.9       0.001
-#&gt; </span><span style='color: #555555;'>2</span><span> All          100   0.038</span><span style='text-decoration: underline;'>5</span><span>   0.6       0.001
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> All            3   0.077</span><span style='text-decoration: underline;'>0</span><span>   0.9       0.001
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> All          100   0.038</span><span style='text-decoration: underline;'>5</span><span>   0.6       0.001
 #&gt; 
 #&gt; $bounds
-#&gt; </span><span style='color: #555555;'># A tibble: 6 x 11</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 6 x 11</span><span>
 #&gt;   Analysis Bound       Z Probability theta  info  Time   AHR Events info0     N
-#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>        1 Upper    4.33    0.000</span><span style='text-decoration: underline;'>257</span><span> 0.186  21.3  10.1 0.830   86.2  21.5  427.
-#&gt; </span><span style='color: #555555;'>2</span><span>        2 Upper    2.34    0.563    0.314  63.2  21.1 0.730  258.   64.6  636.
-#&gt; </span><span style='color: #555555;'>3</span><span>        3 Upper    2.01    0.900    0.364  84.4  30.0 0.695  345.   86.2  636.
-#&gt; </span><span style='color: #555555;'>4</span><span>        1 Lower   -</span><span style='color: #BB0000;'>1.28</span><span>    0.016</span><span style='text-decoration: underline;'>1</span><span>   0.186  21.3  10.1 0.830   86.2  21.5  427.
-#&gt; </span><span style='color: #555555;'>5</span><span>        2 Lower -</span><span style='color: #BB0000;'>Inf</span><span>       0.016</span><span style='text-decoration: underline;'>1</span><span>   0.314  63.2  21.1 0.730  258.   64.6  636.
-#&gt; </span><span style='color: #555555;'>6</span><span>        3 Lower -</span><span style='color: #BB0000;'>Inf</span><span>       0.016</span><span style='text-decoration: underline;'>1</span><span>   0.364  84.4  30.0 0.695  345.   86.2  636.
+#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 Upper    4.33    0.000</span><span style='text-decoration: underline;'>257</span><span> 0.186  21.3  10.1 0.830   86.2  21.5  427.
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span>        2 Upper    2.34    0.563    0.314  63.2  21.1 0.730  258.   64.6  636.
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span>        3 Upper    2.01    0.900    0.364  84.4  30.0 0.695  345.   86.2  636.
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span>        1 Lower   -</span><span style='color: #BB0000;'>1.28</span><span>    0.016</span><span style='text-decoration: underline;'>1</span><span>   0.186  21.3  10.1 0.830   86.2  21.5  427.
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span>        2 Lower -</span><span style='color: #BB0000;'>Inf</span><span>       0.016</span><span style='text-decoration: underline;'>1</span><span>   0.314  63.2  21.1 0.730  258.   64.6  636.
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span>        3 Lower -</span><span style='color: #BB0000;'>Inf</span><span>       0.016</span><span style='text-decoration: underline;'>1</span><span>   0.364  84.4  30.0 0.695  345.   86.2  636.
 #&gt; </div><div class='input'><span class='co'># Check Type I error, non-binding; should be .025 (2.5%)</span>
 <span class='fu'><a href='gs_power_nph.html'>gs_power_nph</a></span><span class='op'>(</span>enrollRates <span class='op'>=</span> <span class='va'>x</span><span class='op'>$</span><span class='va'>enrollRates</span>,
            failRates <span class='op'>=</span> <span class='va'>x</span><span class='op'>$</span><span class='va'>failRates</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>hr <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
@@ -271,12 +271,12 @@ cumulative enrollment at end of each enrollment rate period,
            upper <span class='op'>=</span> <span class='va'>gs_b</span>,
            lower <span class='op'>=</span> <span class='va'>gs_b</span>
            <span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='va'>Z</span><span class='op'>)</span> <span class='op'>&lt;</span> <span class='cn'>Inf</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 10</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 10</span><span>
 #&gt;   Analysis Bound     Z Probability  Time Events   AHR theta  info info0
-#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>        1 Upper  4.33  0.000</span><span style='text-decoration: underline;'>007</span><span>37  9.66   86.2     1     0  21.5  21.5
-#&gt; </span><span style='color: #555555;'>2</span><span>        2 Upper  2.34  0.009</span><span style='text-decoration: underline;'>65</span><span>    18.8   258.      1     0  64.6  64.6
-#&gt; </span><span style='color: #555555;'>3</span><span>        3 Upper  2.01  0.025</span><span style='text-decoration: underline;'>0</span><span>     25.6   345.      1     0  86.2  86.2</div><div class='input'><span class='co'># Power under proportional hazards, HR = 0.75</span>
+#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 Upper  4.33  0.000</span><span style='text-decoration: underline;'>007</span><span>37  9.66   86.2     1     0  21.5  21.5
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span>        2 Upper  2.34  0.009</span><span style='text-decoration: underline;'>65</span><span>    18.8   258.      1     0  64.6  64.6
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span>        3 Upper  2.01  0.025</span><span style='text-decoration: underline;'>0</span><span>     25.6   345.      1     0  86.2  86.2</div><div class='input'><span class='co'># Power under proportional hazards, HR = 0.75</span>
 <span class='fu'><a href='gs_power_nph.html'>gs_power_nph</a></span><span class='op'>(</span>enrollRates <span class='op'>=</span> <span class='va'>x</span><span class='op'>$</span><span class='va'>enrollRates</span>,
            failRates <span class='op'>=</span> <span class='va'>x</span><span class='op'>$</span><span class='va'>failRates</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>hr <span class='op'>=</span> <span class='fl'>.75</span><span class='op'>)</span>,
            events <span class='op'>=</span> <span class='op'>(</span><span class='va'>x</span><span class='op'>$</span><span class='va'>bounds</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Bound</span> <span class='op'>==</span> <span class='st'>"Upper"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>$</span><span class='va'>Events</span>,
@@ -285,12 +285,12 @@ cumulative enrollment at end of each enrollment rate period,
            upper <span class='op'>=</span> <span class='va'>gs_b</span>,
            lower <span class='op'>=</span> <span class='va'>gs_b</span>
            <span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='va'>Z</span><span class='op'>)</span> <span class='op'>&lt;</span> <span class='cn'>Inf</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 10</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 10</span><span>
 #&gt;   Analysis Bound     Z Probability  Time Events   AHR theta  info info0
-#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>        1 Upper  4.33     0.001</span><span style='text-decoration: underline;'>32</span><span>  10.2   86.2  0.75 0.288  21.2  21.5
-#&gt; </span><span style='color: #555555;'>2</span><span>        2 Upper  2.34     0.484    20.8  258.   0.75 0.288  63.8  64.6
-#&gt; </span><span style='color: #555555;'>3</span><span>        3 Upper  2.01     0.750    28.7  345.   0.75 0.288  85.3  86.2</div><div class='input'>
+#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 Upper  4.33     0.001</span><span style='text-decoration: underline;'>32</span><span>  10.2   86.2  0.75 0.288  21.2  21.5
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span>        2 Upper  2.34     0.484    20.8  258.   0.75 0.288  63.8  64.6
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span>        3 Upper  2.01     0.750    28.7  345.   0.75 0.288  85.3  86.2</div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
